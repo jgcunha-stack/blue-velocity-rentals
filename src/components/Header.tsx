@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import carflexLogoWhite from "@/assets/carflex-logo-white.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,23 +35,12 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-3">
-            <div className="flex items-center">
-              <svg viewBox="0 0 50 40" className="w-12 h-10 text-foreground">
-                <path
-                  fill="currentColor"
-                  d="M10 5 C15 5, 20 8, 22 15 C24 22, 20 30, 12 32 C8 33, 5 31, 3 28 C1 25, 2 20, 5 17 C8 14, 12 15, 14 18 C16 21, 14 25, 11 26 C9 27, 7 25, 8 23"
-                />
-                <path
-                  fill="currentColor"
-                  d="M25 8 L25 32 L32 32 L32 22 L45 22 L45 16 L32 16 L32 14 L48 14 L48 8 Z"
-                />
-              </svg>
-              <div className="ml-2">
-                <span className="text-xl font-black tracking-wider text-foreground">CARFLEX</span>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">Locadora de Veículos</p>
-              </div>
-            </div>
+          <a href="#inicio" className="flex items-center">
+            <img 
+              src={carflexLogoWhite} 
+              alt="Carflex - Locadora de Veículos" 
+              className="h-8 md:h-10 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
