@@ -4,23 +4,23 @@ import heroCar from "@/assets/hero-car.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background with diagonal overlay */}
-      <div className="absolute inset-0 carflex-gradient" />
+    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* Background dark */}
+      <div className="absolute inset-0 bg-secondary" />
       
       {/* Diagonal accent lines */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -right-32 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute -top-20 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -right-32 w-[600px] h-[600px] bg-accent/15 rounded-full blur-3xl" />
         <div 
-          className="absolute top-0 left-0 w-full h-full opacity-20"
+          className="absolute top-0 left-0 w-full h-full opacity-30"
           style={{
             backgroundImage: `repeating-linear-gradient(
               -45deg,
               transparent,
               transparent 100px,
-              hsl(var(--accent) / 0.03) 100px,
-              hsl(var(--accent) / 0.03) 101px
+              hsl(var(--accent) / 0.05) 100px,
+              hsl(var(--accent) / 0.05) 101px
             )`
           }}
         />
@@ -108,7 +108,7 @@ const HeroSection = () => {
 
       {/* Bottom diagonal cut */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-24 bg-background"
+        className="absolute bottom-0 left-0 right-0 h-24 bg-white"
         style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }}
       />
     </section>
