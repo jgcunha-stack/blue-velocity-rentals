@@ -3,41 +3,33 @@ import tutoriLogo from "@/assets/clients/tutori-logo.png";
 import nexusLogo from "@/assets/clients/nexus-logo.png";
 import agileLogo from "@/assets/clients/agile-logo.png";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+
 const ClientsSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const clients = [{
-    name: "VMC Tanatopraxia",
-    logo: vmcLogo
-  }, {
-    name: "Tutori Segurança Armada",
-    logo: tutoriLogo
-  }, {
-    name: "Nexus Vigilância",
-    logo: nexusLogo
-  }, {
-    name: "Agile",
-    logo: agileLogo
-  }];
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-      }
-    }, {
-      threshold: 0.2
-    });
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-  return <section ref={sectionRef} className="py-20 md:py-28 overflow-hidden bg-primary-foreground">
+  const clients = [
+    { name: "VMC Tanatopraxia", logo: vmcLogo },
+    { name: "Tutori Segurança Armada", logo: tutoriLogo },
+    { name: "Nexus Vigilância", logo: nexusLogo },
+    { name: "Agile", logo: agileLogo },
+  ];
+
+  const stats = [
+    { value: "+500", label: "Empresas Atendidas" },
+    { value: "98%", label: "Satisfação" },
+    { value: "15+", label: "Anos de Mercado" },
+  ];
+
+  return (
+    <section className="py-20 md:py-28 overflow-hidden bg-primary-foreground">
       <div className="container mx-auto px-6 md:px-[100px] my-[20px] py-[20px]">
         {/* Header Row */}
-        <div className={`flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {/* Title with accent bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-20"
+        >
           <div className="flex items-start gap-4">
             <div className="w-1.5 h-24 bg-accent rounded-full mt-1 animate-pulse" />
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -46,61 +38,85 @@ const ClientsSection = () => {
             </h2>
           </div>
 
-          {/* Subtitle */}
           <p className="max-w-sm lg:text-center text-secondary text-lg">
             Confira quem impulsiona sua operação com a eficiência da Carflex.
           </p>
 
-          {/* CTA Button */}
-          <Button className="bg-accent hover:bg-accent/90 text-white px-10 py-7 text-sm font-semibold tracking-wide w-fit transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-accent/20">
-            CONHEÇA NOSSOS CASES
-          </Button>
-        </div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <Button className="bg-accent hover:bg-accent/90 text-white px-10 py-7 text-sm font-semibold tracking-wide w-fit transition-all duration-300 hover:shadow-xl hover:shadow-accent/20">
+              CONHEÇA NOSSOS CASES
+            </Button>
+          </motion.div>
+        </motion.div>
 
         {/* Stats Counter */}
-        <div className={`flex justify-center gap-16 mb-16 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="text-center">
-            <span className="text-5xl md:text-6xl font-bold text-accent">+500</span>
-            <p className="text-secondary mt-2">Empresas Atendidas</p>
-          </div>
-          <div className="text-center">
-            <span className="text-5xl md:text-6xl font-bold text-accent">98%</span>
-            <p className="text-secondary mt-2">Satisfação</p>
-          </div>
-          <div className="text-center">
-            <span className="text-5xl md:text-6xl font-bold text-accent">15+</span>
-            <p className="text-secondary mt-2">Anos de Mercado</p>
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center gap-16 mb-16"
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+              className="text-center"
+            >
+              <span className="text-5xl md:text-6xl font-bold text-accent">{stat.value}</span>
+              <p className="text-secondary mt-2">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
 
-        {/* Logos Grid - Fixed */}
-        <div className={`transition-all duration-1000 delay-400 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+        {/* Logos Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 lg:gap-24 items-center justify-items-center">
             {clients.map((client, index) => (
-              <div 
-                key={index} 
-                className="group cursor-pointer transition-all duration-500 hover:-translate-y-2 flex items-center justify-center w-full"
-                style={{ animationDelay: `${index * 100}ms` }}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.1, transition: { duration: 0.3 } }}
+                className="group cursor-pointer flex items-center justify-center w-full"
               >
                 <img 
                   src={client.logo} 
                   alt={client.name} 
-                  className="h-20 md:h-24 lg:h-28 w-auto max-w-[180px] object-contain transition-all duration-500 group-hover:scale-110" 
+                  className="h-20 md:h-24 lg:h-28 w-auto max-w-[180px] object-contain transition-all duration-500" 
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Tech Decorations */}
-        <div className={`flex justify-center items-center gap-4 mt-16 transition-all duration-1000 delay-600 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex justify-center items-center gap-4 mt-16"
+        >
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           <div className="w-3 h-3 bg-accent/40 rotate-45 animate-pulse" />
           <div className="w-32 h-px bg-gradient-to-r from-accent/40 via-accent to-accent/40" />
           <div className="w-3 h-3 bg-accent/40 rotate-45 animate-pulse" />
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-        </div>
+        </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ClientsSection;

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import fleetEconomico from "@/assets/fleet-economico.png";
 import fleetIntermediario from "@/assets/fleet-intermediario.png";
 import fleetPickup from "@/assets/fleet-pickup.png";
@@ -8,44 +9,17 @@ import fleetMoto from "@/assets/fleet-moto.png";
 
 const FleetSection = () => {
   const categories = [
-    {
-      name: "Econômico",
-      image: fleetEconomico,
-      description: "Veículos compactos ideais para operações urbanas",
-      accentColor: "from-blue-500 to-blue-600",
-    },
-    {
-      name: "Intermediário",
-      image: fleetIntermediario,
-      description: "Conforto e eficiência para equipes externas",
-      accentColor: "from-emerald-500 to-emerald-600",
-    },
-    {
-      name: "Pick-up",
-      image: fleetPickup,
-      description: "Força e capacidade para cargas e terrenos diversos",
-      accentColor: "from-amber-500 to-amber-600",
-    },
-    {
-      name: "Mini Van",
-      subtitle: "7 lugares",
-      image: fleetMinivan,
-      description: "Transporte de equipes com conforto e espaço",
-      accentColor: "from-violet-500 to-violet-600",
-    },
-    {
-      name: "Motos",
-      image: fleetMoto,
-      description: "Agilidade para entregas e deslocamentos rápidos",
-      accentColor: "from-rose-500 to-rose-600",
-    },
+    { name: "Econômico", image: fleetEconomico, description: "Veículos compactos ideais para operações urbanas", accentColor: "from-blue-500 to-blue-600" },
+    { name: "Intermediário", image: fleetIntermediario, description: "Conforto e eficiência para equipes externas", accentColor: "from-emerald-500 to-emerald-600" },
+    { name: "Pick-up", image: fleetPickup, description: "Força e capacidade para cargas e terrenos diversos", accentColor: "from-amber-500 to-amber-600" },
+    { name: "Mini Van", subtitle: "7 lugares", image: fleetMinivan, description: "Transporte de equipes com conforto e espaço", accentColor: "from-violet-500 to-violet-600" },
+    { name: "Motos", image: fleetMoto, description: "Agilidade para entregas e deslocamentos rápidos", accentColor: "from-rose-500 to-rose-600" },
   ];
 
   return (
     <section id="frota" className="py-24 bg-white relative overflow-hidden">
       {/* Futuristic background pattern */}
       <div className="absolute inset-0">
-        {/* Grid pattern */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -54,7 +28,6 @@ const FleetSection = () => {
             backgroundSize: '60px 60px'
           }}
         />
-        {/* Accent gradients */}
         <div 
           className="absolute inset-0"
           style={{
@@ -66,7 +39,13 @@ const FleetSection = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center space-y-4 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-4 mb-16"
+        >
           <span className="inline-flex items-center gap-2 text-accent font-semibold uppercase tracking-wider text-sm bg-accent/10 px-4 py-2 rounded-full">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             Categorias
@@ -75,26 +54,29 @@ const FleetSection = () => {
           <p className="text-secondary/60 max-w-2xl mx-auto">
             Veículos selecionados para atender diferentes necessidades operacionais
           </p>
-        </div>
+        </motion.div>
 
         {/* Fleet Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {categories.map((category, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              {/* Card */}
-              <div className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col">
-                {/* Accent line on top */}
+              <motion.div
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+              >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
-                {/* Futuristic corner accent */}
                 <div className="absolute top-0 right-0 w-16 h-16">
                   <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg" />
                 </div>
 
-                {/* Image container */}
                 <div className="relative h-28 mb-4 flex items-center justify-center flex-shrink-0">
                   <img 
                     src={category.image} 
@@ -104,7 +86,6 @@ const FleetSection = () => {
                   />
                 </div>
 
-                {/* Content */}
                 <div className="text-center space-y-2 flex-grow flex flex-col justify-center">
                   <h3 className="font-bold text-lg text-secondary group-hover:text-accent transition-colors">{category.name}</h3>
                   {category.subtitle && (
@@ -113,29 +94,32 @@ const FleetSection = () => {
                   <p className="text-xs text-secondary/50 leading-relaxed min-h-[2.5rem]">{category.description}</p>
                 </div>
 
-                {/* Hover indicator */}
                 <div className="mt-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <span className="text-xs text-accent font-semibold flex items-center gap-1">
                     Ver modelos <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16 text-center"
+        >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-secondary/5 rounded-2xl p-6 border border-secondary/10">
-            <p className="text-secondary/70">
-              Precisa de outra categoria de veículo?
-            </p>
+            <p className="text-secondary/70">Precisa de outra categoria de veículo?</p>
             <Button className="gap-2 bg-accent hover:bg-accent/90 font-semibold shadow-lg shadow-accent/25">
               Fale Conosco
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
