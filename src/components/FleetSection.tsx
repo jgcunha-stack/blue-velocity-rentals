@@ -85,33 +85,32 @@ const FleetSection = () => {
               className="group cursor-pointer"
             >
               {/* Card */}
-              <div className="relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+              <div className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col">
                 {/* Accent line on top */}
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
                 {/* Futuristic corner accent */}
                 <div className="absolute top-0 right-0 w-16 h-16">
-                  <div className={`absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg`} />
+                  <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg" />
                 </div>
 
                 {/* Image container */}
-                <div className="relative h-32 mb-4 flex items-center justify-center">
+                <div className="relative h-28 mb-4 flex items-center justify-center flex-shrink-0">
                   <img 
                     src={category.image} 
                     alt={category.name}
-                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
+                    className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-500"
+                    style={{ mixBlendMode: 'multiply' }}
                   />
-                  {/* Reflection effect */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-gradient-to-t from-gray-200/30 to-transparent blur-sm rounded-full" />
                 </div>
 
                 {/* Content */}
-                <div className="text-center space-y-2">
+                <div className="text-center space-y-2 flex-grow flex flex-col justify-center">
                   <h3 className="font-bold text-lg text-secondary group-hover:text-accent transition-colors">{category.name}</h3>
                   {category.subtitle && (
                     <span className="inline-block text-xs text-white bg-secondary/80 px-2 py-0.5 rounded-full">{category.subtitle}</span>
                   )}
-                  <p className="text-xs text-secondary/50 leading-relaxed">{category.description}</p>
+                  <p className="text-xs text-secondary/50 leading-relaxed min-h-[2.5rem]">{category.description}</p>
                 </div>
 
                 {/* Hover indicator */}
