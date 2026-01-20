@@ -19,10 +19,10 @@ const ClientsSection = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-16">
           {/* Title with accent bar */}
           <div className="flex items-start gap-4">
-            <div className="w-1 h-16 bg-accent rounded-full mt-1" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-              Resultados que<br />
-              <span className="text-muted-foreground">geram confiança.</span>
+            <div className="w-1.5 h-20 bg-accent rounded-full mt-1" />
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              <span className="text-accent">Resultados que</span><br />
+              <span className="text-foreground">geram confiança.</span>
             </h2>
           </div>
 
