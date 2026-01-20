@@ -20,30 +20,30 @@ const ClientsSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden bg-primary-foreground">
-      <div className="container mx-auto px-6 md:px-[100px] my-[20px] py-[20px]">
+    <section className="py-12 md:py-20 lg:py-28 overflow-hidden bg-primary-foreground">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-[100px] my-[20px] py-[20px]">
         {/* Header Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-20"
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-8 mb-12 md:mb-20"
         >
-          <div className="flex items-start gap-4">
-            <div className="w-1.5 h-24 bg-accent rounded-full mt-1 animate-pulse" />
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="w-1 sm:w-1.5 h-16 sm:h-24 bg-accent rounded-full mt-1 animate-pulse" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               <span className="text-accent italic">Resultados que</span><br />
               <span className="text-secondary">geram confiança.</span>
             </h2>
           </div>
 
-          <p className="max-w-sm lg:text-center text-secondary text-lg">
+          <p className="max-w-sm text-secondary text-base sm:text-lg">
             Confira quem impulsiona sua operação com a eficiência da Carflex.
           </p>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-            <Button className="bg-accent hover:bg-accent/90 text-white px-10 py-7 text-sm font-semibold tracking-wide w-fit transition-all duration-300 hover:shadow-xl hover:shadow-accent/20">
+            <Button className="bg-accent hover:bg-accent/90 text-white px-6 sm:px-10 py-5 sm:py-7 text-sm font-semibold tracking-wide w-full sm:w-fit transition-all duration-300 hover:shadow-xl hover:shadow-accent/20">
               CONHEÇA NOSSOS CASES
             </Button>
           </motion.div>
@@ -55,7 +55,7 @@ const ClientsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center gap-16 mb-16"
+          className="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16 mb-12 md:mb-16"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -66,8 +66,8 @@ const ClientsSection = () => {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="text-center"
             >
-              <span className="text-5xl md:text-6xl font-bold text-accent">{stat.value}</span>
-              <p className="text-secondary mt-2">{stat.label}</p>
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent">{stat.value}</span>
+              <p className="text-secondary mt-1 sm:mt-2 text-sm sm:text-base">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -79,7 +79,7 @@ const ClientsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 lg:gap-24 items-center justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 lg:gap-24 items-center justify-items-center">
             {clients.map((client, index) => (
               <motion.div
                 key={index}
@@ -93,7 +93,7 @@ const ClientsSection = () => {
                 <img 
                   src={client.logo} 
                   alt={client.name} 
-                  className="h-20 md:h-24 lg:h-28 w-auto max-w-[180px] object-contain transition-all duration-500" 
+                  className="h-14 sm:h-16 md:h-20 lg:h-28 w-auto max-w-[140px] sm:max-w-[180px] object-contain transition-all duration-500" 
                 />
               </motion.div>
             ))}

@@ -27,7 +27,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4"
         >
           Frota premium para
           <span className="block text-accent">sua operação</span>
@@ -38,7 +38,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg text-muted-foreground max-w-md mx-auto mb-8"
+          className="text-base sm:text-lg text-muted-foreground max-w-md mx-auto mb-8 px-2"
         >
           Locação simplificada, suporte 24h e frota sempre disponível.
         </motion.p>
@@ -48,13 +48,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-4 mb-10"
+          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-10 px-2"
         >
-          <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold px-8 rounded-full">
+          <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold px-6 sm:px-8 rounded-full w-full sm:w-auto">
             Solicitar Orçamento
             <ArrowRight className="w-5 h-5" />
           </Button>
-          <Button size="lg" variant="outline" className="border-border hover:bg-secondary/80 rounded-full px-8">
+          <Button size="lg" variant="outline" className="border-border hover:bg-secondary/80 rounded-full px-6 sm:px-8 w-full sm:w-auto">
             Ver Frota
           </Button>
         </motion.div>
@@ -64,15 +64,15 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-4 mb-12"
+          className="flex items-center justify-center gap-3 sm:gap-4 mb-12"
         >
-          <div className="flex -space-x-3">
+          <div className="flex -space-x-2 sm:-space-x-3">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="w-10 h-10 rounded-full bg-accent/20 border-2 border-secondary flex items-center justify-center text-xs font-bold text-accent">
+              <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent/20 border-2 border-secondary flex items-center justify-center text-xs font-bold text-accent">
                 {i}
               </div>
             ))}
-            <div className="w-10 h-10 rounded-full bg-accent border-2 border-secondary flex items-center justify-center text-xs font-bold text-secondary">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent border-2 border-secondary flex items-center justify-center text-xs font-bold text-secondary">
               +
             </div>
           </div>
