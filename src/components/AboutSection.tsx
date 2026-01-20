@@ -27,18 +27,18 @@ const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-sm mx-auto lg:mx-0">
               <img
                 src={aboutCoupleImage}
                 alt="Funcionário Carflex apresentando veículo"
-                className="w-full h-auto object-contain"
+                className="w-full h-[320px] object-cover object-top"
               />
             </div>
 
             {/* Experience badge */}
-            <div className="absolute top-6 right-6 bg-accent text-secondary px-5 py-3 rounded-lg shadow-lg">
+            <div className="absolute top-4 right-4 lg:right-auto lg:left-0 bg-accent text-secondary px-4 py-2 rounded-lg shadow-lg">
               <div className="text-center">
-                <span className="text-3xl font-black block">10+</span>
+                <span className="text-2xl font-black block">10+</span>
                 <span className="text-xs font-semibold">Anos</span>
               </div>
             </div>
