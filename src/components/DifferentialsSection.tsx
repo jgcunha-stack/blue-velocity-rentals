@@ -74,56 +74,71 @@ const DifferentialsSection = () => {
           ))}
         </div>
 
-        {/* Target audience */}
-        <div className="mt-20 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+        {/* Process Timeline - Zigzag Style */}
+        <div className="mt-24 space-y-8">
+          <div className="text-center space-y-4 mb-12">
             <h3 className="text-3xl lg:text-4xl font-bold">
               Para quem <span className="text-accent">faz sentido?</span>
             </h3>
-            
-            <ul className="space-y-4">
-              {[
-                "Empresas com equipe externa ou logística",
-                "Negócios que não podem ficar com veículo parado",
-                "Operações que buscam previsibilidade de custo",
-                "Gestores que querem reduzir carga administrativa",
-              ].map((item, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+          </div>
 
+          {/* Timeline Zigzag */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Desktop connector line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 border-t-2 border-dashed border-accent/30 -translate-y-1/2" />
+            
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+              {[
+                { icon: "🏢", title: "Empresas", desc: "Com equipe externa ou logística" },
+                { icon: "🚗", title: "Negócios", desc: "Que não podem ficar sem veículo" },
+                { icon: "📊", title: "Operações", desc: "Que buscam previsibilidade de custo" },
+                { icon: "📋", title: "Gestores", desc: "Que querem reduzir carga administrativa" },
+              ].map((item, index) => (
+                <div key={index} className={`flex flex-col items-center ${index % 2 === 1 ? 'lg:mt-16' : 'lg:-mt-4'}`}>
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center text-2xl border-2 border-accent/50 shadow-lg shadow-accent/20">
+                      {item.icon}
+                    </div>
+                    <span className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-accent text-background text-xs font-bold flex items-center justify-center">
+                      {index + 1}
+                    </span>
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h4 className="font-bold text-lg">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">500+</span>
+              <p className="text-muted-foreground mt-2">Clientes atendidos em BH e região</p>
+            </div>
+            
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute bottom-2 left-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">24h</span>
+              <p className="text-muted-foreground mt-2">Suporte dedicado à sua operação</p>
+            </div>
+            
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute top-2 left-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">100%</span>
+              <p className="text-muted-foreground mt-2">Veículo reserva garantido</p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
             <p className="text-lg">
               Se o veículo é parte da operação,{" "}
               <span className="font-bold text-accent">a Carflex faz sentido.</span>
             </p>
-          </div>
-
-          <div className="relative">
-            <div className="carflex-card p-8 lg:p-10 space-y-6">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
-              
-              <div className="relative space-y-4">
-                <h4 className="text-2xl font-bold">Pronto para começar?</h4>
-                <p className="text-muted-foreground">
-                  Entre em contato e descubra como a Carflex pode transformar 
-                  a mobilidade da sua empresa.
-                </p>
-                
-                <div className="pt-4 space-y-3">
-                  <div className="flex items-center gap-3 text-sm">
-                    <MapPin className="w-5 h-5 text-accent" />
-                    <span>Belo Horizonte e região metropolitana</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Headphones className="w-5 h-5 text-accent" />
-                    <span>Suporte 24 horas</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
