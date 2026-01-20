@@ -1,11 +1,14 @@
+import vmcLogo from "@/assets/clients/vmc-logo.png";
+import tutoriLogo from "@/assets/clients/tutori-logo.png";
+import nexusLogo from "@/assets/clients/nexus-logo.png";
+import agileLogo from "@/assets/clients/agile-logo.png";
+
 const ClientsSection = () => {
   const clients = [
-    { name: "Empresa A", initials: "EA" },
-    { name: "Empresa B", initials: "EB" },
-    { name: "Empresa C", initials: "EC" },
-    { name: "Empresa D", initials: "ED" },
-    { name: "Empresa E", initials: "EE" },
-    { name: "Empresa F", initials: "EF" },
+    { name: "VMC Tanatopraxia", logo: vmcLogo },
+    { name: "Tutori Segurança Armada", logo: tutoriLogo },
+    { name: "Nexus Vigilância", logo: nexusLogo },
+    { name: "Agile", logo: agileLogo },
   ];
 
   return (
@@ -22,18 +25,17 @@ const ClientsSection = () => {
         </div>
 
         {/* Logos Grid */}
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 lg:gap-20">
           {clients.map((client, index) => (
             <div
               key={index}
-              className="group flex items-center justify-center w-32 h-16 md:w-40 md:h-20 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+              className="flex items-center justify-center h-16 md:h-20 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
             >
-              {/* Placeholder para logos - substitua por imagens reais */}
-              <div className="flex items-center justify-center w-full h-full border border-border/50 rounded-lg bg-muted/30 group-hover:border-accent/50 transition-colors">
-                <span className="text-xl md:text-2xl font-bold text-muted-foreground group-hover:text-accent transition-colors">
-                  {client.initials}
-                </span>
-              </div>
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="h-full w-auto object-contain max-w-[140px] md:max-w-[160px]"
+              />
             </div>
           ))}
         </div>
