@@ -4,45 +4,39 @@ import nexusLogo from "@/assets/clients/nexus-logo.png";
 import agileLogo from "@/assets/clients/agile-logo.png";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
-
 const ClientsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  const clients = [
-    { name: "VMC Tanatopraxia", logo: vmcLogo },
-    { name: "Tutori Segurança Armada", logo: tutoriLogo },
-    { name: "Nexus Vigilância", logo: nexusLogo },
-    { name: "Agile", logo: agileLogo },
-  ];
-
-
+  const clients = [{
+    name: "VMC Tanatopraxia",
+    logo: vmcLogo
+  }, {
+    name: "Tutori Segurança Armada",
+    logo: tutoriLogo
+  }, {
+    name: "Nexus Vigilância",
+    logo: nexusLogo
+  }, {
+    name: "Agile",
+    logo: agileLogo
+  }];
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    }, {
+      threshold: 0.2
+    });
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-[#f8f6f3] overflow-hidden">
+  return <section ref={sectionRef} className="py-20 md:py-28 overflow-hidden bg-primary-foreground">
       <div className="container mx-auto px-6 md:px-[100px]">
         {/* Header Row */}
-        <div 
-          className={`flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-20 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className={`flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {/* Title with accent bar */}
           <div className="flex items-start gap-4">
             <div className="w-1.5 h-24 bg-accent rounded-full mt-1 animate-pulse" />
@@ -64,11 +58,7 @@ const ClientsSection = () => {
         </div>
 
         {/* Stats Counter */}
-        <div 
-          className={`flex justify-center gap-16 mb-16 transition-all duration-1000 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className={`flex justify-center gap-16 mb-16 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="text-center">
             <span className="text-5xl md:text-6xl font-bold text-accent">+500</span>
             <p className="text-secondary mt-2">Empresas Atendidas</p>
@@ -84,39 +74,23 @@ const ClientsSection = () => {
         </div>
 
         {/* Logos Grid - Fixed */}
-        <div 
-          className={`transition-all duration-1000 delay-400 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        <div className={`transition-all duration-1000 delay-400 ${isVisible ? "opacity-100" : "opacity-0"}`}>
           <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 md:gap-8">
-            {clients.map((client, index) => (
-              <div
-                key={index}
-                className="group cursor-pointer"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+            {clients.map((client, index) => <div key={index} className="group cursor-pointer" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <div className="relative p-6 md:p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-transparent hover:border-accent/20 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="h-16 md:h-24 w-auto object-contain transition-all duration-500 group-hover:scale-110"
-                  />
+                  <img src={client.logo} alt={client.name} className="h-16 md:h-24 w-auto object-contain transition-all duration-500 group-hover:scale-110" />
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
 
         {/* Tech Decorations */}
-        <div 
-          className={`flex justify-center items-center gap-4 mt-16 transition-all duration-1000 delay-600 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        <div className={`flex justify-center items-center gap-4 mt-16 transition-all duration-1000 delay-600 ${isVisible ? "opacity-100" : "opacity-0"}`}>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           <div className="w-3 h-3 bg-accent/40 rotate-45 animate-pulse" />
           <div className="w-32 h-px bg-gradient-to-r from-accent/40 via-accent to-accent/40" />
@@ -124,8 +98,6 @@ const ClientsSection = () => {
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ClientsSection;
