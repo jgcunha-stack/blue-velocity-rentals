@@ -2,58 +2,67 @@ import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import heroCar from "@/assets/hero-car.png";
-import badgeSticker from "@/assets/badge-sticker.png";
-
 const HeroSection = () => {
-  return (
-    <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-secondary pt-20">
+  return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-secondary pt-20">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-secondary via-secondary to-secondary/95" />
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 text-center py-[40px] my-[20px]">
-        {/* Badge Sticker */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
-          className="inline-block mb-8"
-        >
-          <img 
-            src={badgeSticker} 
-            alt="Locação Corporativa" 
-            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300"
-          />
+        {/* Badge */}
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6
+      }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          
         </motion.div>
 
         {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4"
-        >
-          Frota completa para
+        <motion.h1 initial={{
+        opacity: 0,
+        y: 30
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6,
+        delay: 0.1
+      }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4">
+          Frota premium para
           <span className="block text-accent">sua operação</span>
         </motion.h1>
         
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-muted-foreground max-w-md mx-auto mb-8 px-2"
-        >
+        <motion.p initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6,
+        delay: 0.2
+      }} className="text-base sm:text-lg text-muted-foreground max-w-md mx-auto mb-8 px-2">
           Locação simplificada, suporte 24h e frota sempre disponível.
         </motion.p>
 
         {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-10 px-2"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6,
+        delay: 0.3
+      }} className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-10 px-2">
           <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold px-6 sm:px-8 rounded-full w-full sm:w-auto">
             Solicitar Orçamento
             <ArrowRight className="w-5 h-5" />
@@ -64,18 +73,20 @@ const HeroSection = () => {
         </motion.div>
 
         {/* Social Proof */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-3 sm:gap-4 mb-12"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6,
+        delay: 0.4
+      }} className="flex items-center justify-center gap-3 sm:gap-4 mb-12">
           <div className="flex -space-x-2 sm:-space-x-3">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent/20 border-2 border-secondary flex items-center justify-center text-xs font-bold text-accent">
+            {[1, 2, 3, 4].map(i => <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent/20 border-2 border-secondary flex items-center justify-center text-xs font-bold text-accent">
                 {i}
-              </div>
-            ))}
+              </div>)}
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent border-2 border-secondary flex items-center justify-center text-xs font-bold text-secondary">
               +
             </div>
@@ -83,20 +94,24 @@ const HeroSection = () => {
           <div className="text-left">
             <p className="text-sm font-semibold">500+ Clientes</p>
             <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map(i => (
-                <Star key={i} className="w-3 h-3 fill-accent text-accent" />
-              ))}
+              {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-3 h-3 fill-accent text-accent" />)}
             </div>
           </div>
         </motion.div>
 
         {/* Hero Car Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="relative max-w-4xl mx-auto"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        scale: 0.9,
+        y: 40
+      }} animate={{
+        opacity: 1,
+        scale: 1,
+        y: 0
+      }} transition={{
+        duration: 0.8,
+        delay: 0.5
+      }} className="relative max-w-4xl mx-auto">
           <img src={heroCar} alt="Veículo premium da frota Carflex" className="w-full h-auto drop-shadow-2xl" />
           {/* Subtle glow under car */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-accent/20 blur-3xl rounded-full" />
@@ -109,8 +124,6 @@ const HeroSection = () => {
           <path d="M0 80H1440V40C1440 40 1140 0 720 0C300 0 0 40 0 40V80Z" fill="white" />
         </svg>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
