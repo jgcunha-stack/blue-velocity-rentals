@@ -1,4 +1,5 @@
 import { Instagram, Linkedin, Facebook } from "lucide-react";
+import carflexLogoWhite from "@/assets/carflex-logo-white.png";
 
 const Footer = () => {
   return (
@@ -7,22 +8,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and description */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center">
-              <svg viewBox="0 0 50 40" className="w-10 h-8 text-foreground">
-                <path
-                  fill="currentColor"
-                  d="M10 5 C15 5, 20 8, 22 15 C24 22, 20 30, 12 32 C8 33, 5 31, 3 28 C1 25, 2 20, 5 17 C8 14, 12 15, 14 18 C16 21, 14 25, 11 26 C9 27, 7 25, 8 23"
-                />
-                <path
-                  fill="currentColor"
-                  d="M25 8 L25 32 L32 32 L32 22 L45 22 L45 16 L32 16 L32 14 L48 14 L48 8 Z"
-                />
-              </svg>
-              <div className="ml-2">
-                <span className="text-lg font-black tracking-wider text-foreground">CARFLEX</span>
-                <p className="text-[9px] tracking-[0.15em] text-muted-foreground uppercase">Locadora de Veículos</p>
-              </div>
-            </div>
+            <img 
+              src={carflexLogoWhite} 
+              alt="Carflex - Locadora de Veículos" 
+              className="h-8 w-auto"
+            />
             <p className="text-sm text-muted-foreground max-w-sm">
               Locação de veículos pensada para manter operações em movimento. 
               Soluções em frota corporativa com foco em continuidade e previsibilidade.
