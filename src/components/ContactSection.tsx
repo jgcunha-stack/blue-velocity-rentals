@@ -1,134 +1,157 @@
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ContactSection = () => {
+  const faqs = [
+    {
+      question: "Qual o prazo mínimo de locação?",
+      answer: "Trabalhamos com contratos a partir de 12 meses para garantir as melhores condições e valores para sua empresa. Consulte-nos para casos especiais."
+    },
+    {
+      question: "Vocês oferecem veículo reserva?",
+      answer: "Sim! Oferecemos veículo reserva ilimitado sem custo adicional. Nunca deixamos sua operação parar."
+    },
+    {
+      question: "Quais tipos de veículos estão disponíveis?",
+      answer: "Nossa frota inclui veículos econômicos, intermediários, pick-ups, mini vans (7 lugares) e motos. Todos adaptados às necessidades corporativas."
+    },
+    {
+      question: "Vocês atendem em quais regiões?",
+      answer: "Atendemos Belo Horizonte e toda a região metropolitana. Fazemos entrega e recolhimento sem custo adicional."
+    },
+    {
+      question: "O que está incluído no valor da locação?",
+      answer: "Nossos pacotes incluem manutenção preventiva e corretiva, IPVA, licenciamento, seguro e assistência 24 horas. Não cobramos lavagem simples nem condutor adicional."
+    },
+    {
+      question: "Como funciona o suporte 24 horas?",
+      answer: "Nossa equipe está disponível 24 horas por dia, 7 dias por semana, para atender qualquer necessidade da sua operação, desde assistência na estrada até troca de veículos."
+    },
+  ];
+
   return (
-    <section id="contato" className="py-24 carflex-gradient relative overflow-hidden">
-      {/* Decorative diagonal lines */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-24 bg-background"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%)" }}
-      />
-      
+    <section id="contato" className="py-24 bg-white relative overflow-hidden">
+      {/* Background pattern */}
       <div className="absolute inset-0">
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 100px,
-              hsl(var(--accent) / 0.05) 100px,
-              hsl(var(--accent) / 0.05) 101px
-            )`
+            backgroundImage: `linear-gradient(hsl(var(--secondary)) 1px, transparent 1px),
+                              linear-gradient(90deg, hsl(var(--secondary)) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
           }}
         />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-12">
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <span className="text-accent font-semibold uppercase tracking-wider text-sm">
-                Fale Conosco
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-black">
-                Vamos conversar sobre
-                <span className="text-accent block">sua operação</span>
-              </h2>
-              <p className="text-muted-foreground">
-                Entre em contato e descubra como a Carflex pode otimizar a mobilidade 
-                da sua empresa.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50">
-                <div className="p-3 rounded-lg bg-accent/10">
-                  <Phone className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Telefone</p>
-                  <p className="font-semibold">(31) 99999-9999</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50">
-                <div className="p-3 rounded-lg bg-accent/10">
-                  <Mail className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">E-mail</p>
-                  <p className="font-semibold">contato@carflex.com.br</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50">
-                <div className="p-3 rounded-lg bg-accent/10">
-                  <MapPin className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Localização</p>
-                  <p className="font-semibold">Belo Horizonte - MG</p>
-                </div>
-              </div>
-            </div>
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        {/* FAQ Section */}
+        <div className="mb-24">
+          <div className="text-center space-y-4 mb-12">
+            <span className="inline-flex items-center gap-2 text-accent font-semibold uppercase tracking-wider text-sm bg-accent/10 px-4 py-2 rounded-full">
+              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              Dúvidas Frequentes
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-black text-secondary">
+              Perguntas <span className="text-accent">Frequentes</span>
+            </h2>
+            <p className="text-secondary/60 max-w-2xl mx-auto">
+              Tire suas dúvidas sobre nossos serviços de locação corporativa
+            </p>
           </div>
 
-          {/* Contact Form */}
-          <div className="carflex-card p-8 lg:p-10">
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Nome da Empresa</label>
-                <Input 
-                  placeholder="Digite o nome da sua empresa" 
-                  className="bg-secondary/50 border-border/50 focus:border-accent"
-                />
-              </div>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="border border-secondary/10 rounded-2xl px-6 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-shadow data-[state=open]:shadow-lg data-[state=open]:border-accent/30"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-secondary hover:text-accent py-5 [&[data-state=open]]:text-accent">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-secondary/70 pb-5">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Seu Nome</label>
-                  <Input 
-                    placeholder="Seu nome completo" 
-                    className="bg-secondary/50 border-border/50 focus:border-accent"
-                  />
+        {/* Contact CTA Section */}
+        <div className="relative">
+          <div className="bg-secondary rounded-3xl p-8 lg:p-12 overflow-hidden relative">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-2xl" />
+            
+            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="space-y-6">
+                <span className="text-accent font-semibold uppercase tracking-wider text-sm">
+                  Fale Conosco
+                </span>
+                <h3 className="text-3xl lg:text-4xl font-black text-white">
+                  Vamos conversar sobre
+                  <span className="text-accent block">sua operação</span>
+                </h3>
+                <p className="text-white/70">
+                  Entre em contato e descubra como a Carflex pode otimizar a mobilidade 
+                  da sua empresa.
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold rounded-full">
+                    <MessageCircle className="w-5 h-5" />
+                    Falar no WhatsApp
+                  </Button>
+                  <Button size="lg" variant="outline" className="gap-2 border-white/20 text-white hover:bg-white/10 rounded-full">
+                    <Phone className="w-5 h-5" />
+                    Ligar Agora
+                  </Button>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Telefone</label>
-                  <Input 
-                    placeholder="(00) 00000-0000" 
-                    className="bg-secondary/50 border-border/50 focus:border-accent"
-                  />
+              </div>
+
+              {/* Right - Contact Info Cards */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                  <div className="p-3 rounded-xl bg-accent/20">
+                    <Phone className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/50">Telefone</p>
+                    <p className="font-semibold text-white">(31) 99999-9999</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                  <div className="p-3 rounded-xl bg-accent/20">
+                    <Mail className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/50">E-mail</p>
+                    <p className="font-semibold text-white">contato@carflex.com.br</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                  <div className="p-3 rounded-xl bg-accent/20">
+                    <MapPin className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/50">Localização</p>
+                    <p className="font-semibold text-white">Belo Horizonte - MG</p>
+                  </div>
                 </div>
               </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">E-mail</label>
-                <Input 
-                  type="email"
-                  placeholder="seu@email.com.br" 
-                  className="bg-secondary/50 border-border/50 focus:border-accent"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Mensagem</label>
-                <Textarea 
-                  placeholder="Conte-nos sobre sua necessidade de frota..." 
-                  rows={4}
-                  className="bg-secondary/50 border-border/50 focus:border-accent resize-none"
-                />
-              </div>
-
-              <Button className="w-full gap-2 bg-accent hover:bg-accent/90 font-semibold py-6">
-                Enviar Mensagem
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
