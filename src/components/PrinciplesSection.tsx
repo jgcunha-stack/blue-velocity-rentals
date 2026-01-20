@@ -28,7 +28,7 @@ const PrinciplesSection = () => {
             <span className="w-2 h-2 bg-primary rounded-full"></span>
             <span className="text-sm font-semibold uppercase tracking-wide">CONHEÇA A CARFLEX</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-popover">
             NOSSOS PRINCÍPIOS
           </h2>
         </div>
