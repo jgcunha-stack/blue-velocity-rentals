@@ -17,7 +17,7 @@ const FleetSection = () => {
   ];
 
   return (
-    <section id="frota" className="py-24 bg-white relative overflow-hidden">
+    <section id="frota" className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Futuristic background pattern */}
       <div className="absolute inset-0">
         <div 
@@ -44,20 +44,20 @@ const FleetSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center space-y-4 mb-16"
+          className="text-center space-y-3 sm:space-y-4 mb-10 md:mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-accent font-semibold uppercase tracking-wider text-sm bg-accent/10 px-4 py-2 rounded-full">
+          <span className="inline-flex items-center gap-2 text-accent font-semibold uppercase tracking-wider text-xs sm:text-sm bg-accent/10 px-3 sm:px-4 py-2 rounded-full">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             Categorias
           </span>
-          <h2 className="text-4xl lg:text-5xl font-black text-secondary">NOSSA FROTA</h2>
-          <p className="text-secondary/60 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-secondary">NOSSA FROTA</h2>
+          <p className="text-secondary/60 max-w-2xl mx-auto text-sm sm:text-base">
             Veículos selecionados para atender diferentes necessidades operacionais
           </p>
         </motion.div>
 
         {/* Fleet Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {categories.map((category, index) => (
             <motion.div
               key={index}
@@ -69,7 +69,7 @@ const FleetSection = () => {
             >
               <motion.div
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+                className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
@@ -77,7 +77,7 @@ const FleetSection = () => {
                   <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg" />
                 </div>
 
-                <div className="relative h-28 mb-4 flex items-center justify-center flex-shrink-0">
+                <div className="relative h-20 sm:h-28 mb-3 sm:mb-4 flex items-center justify-center flex-shrink-0">
                   <img 
                     src={category.image} 
                     alt={category.name}
@@ -86,15 +86,15 @@ const FleetSection = () => {
                   />
                 </div>
 
-                <div className="text-center space-y-2 flex-grow flex flex-col justify-center">
-                  <h3 className="font-bold text-lg text-secondary group-hover:text-accent transition-colors">{category.name}</h3>
+                <div className="text-center space-y-1 sm:space-y-2 flex-grow flex flex-col justify-center">
+                  <h3 className="font-bold text-sm sm:text-lg text-secondary group-hover:text-accent transition-colors">{category.name}</h3>
                   {category.subtitle && (
-                    <span className="inline-block text-xs text-white bg-secondary/80 px-2 py-0.5 rounded-full">{category.subtitle}</span>
+                    <span className="inline-block text-[10px] sm:text-xs text-white bg-secondary/80 px-2 py-0.5 rounded-full">{category.subtitle}</span>
                   )}
-                  <p className="text-xs text-secondary/50 leading-relaxed min-h-[2.5rem]">{category.description}</p>
+                  <p className="text-[10px] sm:text-xs text-secondary/50 leading-relaxed min-h-[2rem] sm:min-h-[2.5rem] hidden sm:block">{category.description}</p>
                 </div>
 
-                <div className="mt-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className="mt-2 sm:mt-4 hidden sm:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <span className="text-xs text-accent font-semibold flex items-center gap-1">
                     Ver modelos <ArrowRight className="w-3 h-3" />
                   </span>
@@ -110,11 +110,11 @@ const FleetSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 text-center"
+          className="mt-10 sm:mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-secondary/5 rounded-2xl p-6 border border-secondary/10">
-            <p className="text-secondary/70">Precisa de outra categoria de veículo?</p>
-            <Button className="gap-2 bg-accent hover:bg-accent/90 font-semibold shadow-lg shadow-accent/25">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-secondary/5 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-secondary/10">
+            <p className="text-secondary/70 text-sm sm:text-base">Precisa de outra categoria de veículo?</p>
+            <Button className="gap-2 bg-accent hover:bg-accent/90 font-semibold shadow-lg shadow-accent/25 w-full sm:w-auto">
               Fale Conosco
               <ArrowRight className="w-4 h-4" />
             </Button>

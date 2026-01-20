@@ -11,14 +11,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="sobre" className="bg-white relative overflow-hidden my-0 py-[100px]">
+    <section id="sobre" className="bg-white relative overflow-hidden my-0 py-12 sm:py-16 md:py-[100px]">
       {/* Background watermark */}
-      <div className="absolute top-12 right-8 text-[120px] lg:text-[180px] font-black text-secondary/5 leading-none tracking-tighter pointer-events-none">
+      <div className="absolute top-12 right-8 text-[60px] sm:text-[80px] md:text-[120px] lg:text-[180px] font-black text-secondary/5 leading-none tracking-tighter pointer-events-none hidden sm:block">
         SOBRE NÓS
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center py-[100px]">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center py-8 sm:py-12 md:py-[100px]">
           {/* Left - Image with badge */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -28,7 +28,7 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img src={aboutCoupleImage} alt="Profissional Carflex com veículo" className="w-full h-[400px] lg:h-[500px] object-cover object-top" />
+              <img src={aboutCoupleImage} alt="Profissional Carflex com veículo" className="w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary/30 via-transparent to-transparent" />
             </div>
 
@@ -38,11 +38,11 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="absolute -top-4 right-8 lg:right-12 bg-accent text-secondary px-6 py-4 rounded-lg shadow-xl"
+              className="absolute -top-4 right-4 sm:right-8 lg:right-12 bg-accent text-secondary px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-xl"
             >
               <div className="text-center">
-                <span className="text-4xl lg:text-5xl font-black block">10+</span>
-                <span className="text-sm font-semibold">Anos de<br />Experiência</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black block">10+</span>
+                <span className="text-xs sm:text-sm font-semibold">Anos de<br />Experiência</span>
               </div>
             </motion.div>
 
@@ -57,18 +57,18 @@ const AboutSection = () => {
             transition={{ duration: 0.7 }}
             className="space-y-8"
           >
-            <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-black text-secondary leading-tight">
+            <div className="space-y-3 sm:space-y-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-secondary leading-tight">
                 Sua operação em{" "}
                 <span className="text-accent">movimento</span>
               </h2>
-              <p className="text-secondary/70 text-lg">
+              <p className="text-secondary/70 text-base sm:text-lg">
                 Locação descomplicada para quem não pode parar.
               </p>
             </div>
 
             {/* Feature cards */}
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -78,13 +78,13 @@ const AboutSection = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="space-y-3"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <feature.icon className="w-6 h-6 text-accent" />
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                     </div>
-                    <h3 className="font-bold text-secondary">{feature.title}</h3>
+                    <h3 className="font-bold text-sm sm:text-base text-secondary">{feature.title}</h3>
                   </div>
-                  <p className="text-sm text-secondary/60 pl-15">{feature.description}</p>
+                  <p className="text-xs sm:text-sm text-secondary/60 hidden sm:block">{feature.description}</p>
                 </motion.div>
               ))}
             </div>

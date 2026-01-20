@@ -15,7 +15,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contato" className="py-24 bg-gray-100 relative overflow-hidden">
+    <section id="contato" className="py-12 sm:py-16 md:py-24 bg-gray-100 relative overflow-hidden">
       {/* Blurred fleet background */}
       <div className="absolute inset-0">
         <img src={fleetBackground} alt="" className="w-full h-full object-cover object-center opacity-20 blur-[2px] scale-110" />
@@ -24,7 +24,7 @@ const ContactSection = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* FAQ Section */}
-        <div className="mb-24">
+        <div className="mb-12 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const ContactSection = () => {
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
               Dúvidas Frequentes
             </span>
-            <h2 className="text-4xl lg:text-5xl font-black text-secondary">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-secondary">
               Perguntas <span className="text-accent">Frequentes</span>
             </h2>
             <p className="text-secondary/60 max-w-2xl mx-auto">
@@ -76,11 +76,11 @@ const ContactSection = () => {
           transition={{ duration: 0.7 }}
           className="relative"
         >
-          <div className="bg-secondary rounded-3xl p-8 lg:p-12 overflow-hidden relative">
+          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-2xl" />
             
-            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Content */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -92,7 +92,7 @@ const ContactSection = () => {
                 <span className="text-accent font-semibold uppercase tracking-wider text-sm">
                   Fale Conosco
                 </span>
-                <h3 className="text-3xl lg:text-4xl font-black text-white">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
                   Vamos conversar sobre
                   <span className="text-accent block">sua operação</span>
                 </h3>
@@ -101,15 +101,15 @@ const ContactSection = () => {
                   da sua empresa.
                 </p>
 
-                <div className="flex flex-wrap gap-4">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                    <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold rounded-full">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                    <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold rounded-full w-full sm:w-auto">
                       <MessageCircle className="w-5 h-5" />
                       Falar no WhatsApp
                     </Button>
                   </motion.div>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                    <Button size="lg" variant="outline" className="gap-2 border-white/20 text-white hover:bg-white/10 rounded-full">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                    <Button size="lg" variant="outline" className="gap-2 border-white/20 text-white hover:bg-white/10 rounded-full w-full sm:w-auto">
                       <Phone className="w-5 h-5" />
                       Ligar Agora
                     </Button>
