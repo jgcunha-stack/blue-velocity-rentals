@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import aboutBgCar from "@/assets/about-bg-car.jpg";
 
 const AboutSection = () => {
   const highlights = [
@@ -9,17 +10,26 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="sobre" className="py-24 bg-background relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="sobre" className="py-24 relative overflow-hidden">
+      {/* White background with blurred car image */}
+      <div className="absolute inset-0 bg-white" />
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `url(${aboutBgCar})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'blur(8px)',
+        }}
+      />
       
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Decorative card */}
           <div className="relative">
-            <div className="carflex-card p-8 lg:p-12 space-y-6">
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                <svg viewBox="0 0 50 40" className="w-8 h-6 text-foreground">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-secondary/10 p-8 lg:p-12 space-y-6 shadow-xl">
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-lg flex items-center justify-center shadow-lg">
+                <svg viewBox="0 0 50 40" className="w-8 h-6 text-secondary">
                   <path
                     fill="currentColor"
                     d="M10 5 C15 5, 20 8, 22 15 C24 22, 20 30, 12 32 C8 33, 5 31, 3 28 C1 25, 2 20, 5 17 C8 14, 12 15, 14 18 C16 21, 14 25, 11 26 C9 27, 7 25, 8 23"
@@ -31,9 +41,9 @@ const AboutSection = () => {
                 </svg>
               </div>
 
-              <h2 className="text-3xl lg:text-4xl font-black">Sobre nós</h2>
+              <h2 className="text-3xl lg:text-4xl font-black text-secondary">Sobre nós</h2>
               
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-4 text-secondary/70">
                 <p>
                   A Carflex é uma locadora de veículos criada com foco em operação, não em discurso. 
                   Nascemos para atender empresas que dependem de frota no dia a dia e não podem 
@@ -43,7 +53,7 @@ const AboutSection = () => {
                   Atuamos como parceiros operacionais, assumindo a gestão da frota para que nossos 
                   clientes tenham previsibilidade, continuidade e menos carga administrativa.
                 </p>
-                <p className="text-foreground font-medium">
+                <p className="text-secondary font-medium">
                   Mais do que fornecer carros, a Carflex estrutura a mobilidade da empresa 
                   para que o negócio siga funcionando.
                 </p>
@@ -60,10 +70,10 @@ const AboutSection = () => {
           {/* Right - Features */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <span className="text-accent font-semibold uppercase tracking-wider text-sm">
+              <span className="text-accent font-semibold uppercase tracking-wider text-sm bg-accent/10 px-3 py-1 rounded-full">
                 Nosso Modelo
               </span>
-              <h3 className="text-3xl lg:text-4xl font-bold">
+              <h3 className="text-3xl lg:text-4xl font-bold text-secondary">
                 Simples, direto e
                 <span className="text-accent"> sem surpresas</span>
               </h3>
@@ -73,10 +83,10 @@ const AboutSection = () => {
               {highlights.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50 border border-border/50 hover:border-accent/50 transition-colors group"
+                  className="flex items-start gap-3 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-secondary/10 hover:border-accent/50 transition-colors group shadow-sm"
                 >
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm font-medium group-hover:text-accent transition-colors">
+                  <span className="text-sm font-medium text-secondary group-hover:text-accent transition-colors">
                     {item}
                   </span>
                 </div>
@@ -84,11 +94,11 @@ const AboutSection = () => {
             </div>
 
             {/* Challenge section */}
-            <div className="p-6 rounded-2xl carflex-card space-y-4">
+            <div className="p-6 rounded-2xl bg-secondary text-foreground space-y-4 shadow-lg">
               <h4 className="text-xl font-bold text-accent">
                 Toda empresa que depende de veículos tem o mesmo desafio
               </h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm text-foreground/70">
                 <li>• Veículo parado gera atraso.</li>
                 <li>• Atraso gera retrabalho.</li>
                 <li>• Retrabalho gera custo invisível.</li>
