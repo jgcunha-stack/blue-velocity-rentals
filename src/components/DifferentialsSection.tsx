@@ -25,7 +25,7 @@ const DifferentialsSection = () => {
     title: "Entregamos e recolhemos",
     description: "Sem nenhum custo na região"
   }];
-  return <><section id="diferenciais" className="py-24 relative overflow-hidden bg-secondary">
+  return <section id="diferenciais" className="py-24 relative overflow-hidden bg-secondary">
       {/* Decorative elements */}
       <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -translate-y-1/2" />
       <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2" />
@@ -52,88 +52,83 @@ const DifferentialsSection = () => {
             </div>)}
         </div>
 
-      </div>
-    </section>
+        {/* Process Timeline - Zigzag Style */}
+        <div className="mt-24 space-y-8">
+          <div className="text-center space-y-4 mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold">
+              Para quem <span className="text-accent">faz sentido?</span>
+            </h3>
+          </div>
 
-    {/* Para quem faz sentido - Dark Section */}
-    <section className="py-24 bg-background relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-          {[{
-            icon: Car,
-            title: "Veículos adequados à operação",
-            desc: "Frota personalizada conforme sua necessidade."
-          }, {
-            icon: RefreshCw,
-            title: "Manutenção inclusa",
-            desc: "Preventiva e corretiva, sem preocupações."
-          }, {
-            icon: Droplets,
-            title: "Seguro completo",
-            desc: "Proteção total para sua operação."
-          }, {
-            icon: Headphones,
-            title: "Contratos flexíveis",
-            desc: "Adaptamos à realidade da sua empresa."
-          }].map((item, index) => (
-            <div key={index} className="group p-6 rounded-xl border border-accent/20 bg-gradient-to-b from-accent/5 to-transparent hover:border-accent/40 transition-all duration-300 text-center">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-accent/10 border border-accent/30 flex items-center justify-center">
-                <item.icon className="w-6 h-6 text-accent" />
-              </div>
-              <h4 className="font-bold text-lg text-foreground mb-2">{item.title}</h4>
-              <p className="text-sm text-muted-foreground">{item.desc}</p>
+          {/* Timeline Zigzag */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Desktop connector line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 border-t-2 border-dashed border-accent/30 -translate-y-1/2" />
+            
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+              {[{
+              icon: "🏢",
+              title: "Empresas",
+              desc: "Com equipe externa ou logística"
+            }, {
+              icon: "🚗",
+              title: "Negócios",
+              desc: "Que não podem ficar sem veículo"
+            }, {
+              icon: "📊",
+              title: "Operações",
+              desc: "Que buscam previsibilidade de custo"
+            }, {
+              icon: "📋",
+              title: "Gestores",
+              desc: "Que querem reduzir carga administrativa"
+            }].map((item, index) => <div key={index} className={`flex flex-col items-center ${index % 2 === 1 ? 'lg:mt-16' : 'lg:-mt-4'}`}>
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center text-2xl border-2 border-accent/50 shadow-lg shadow-accent/20">
+                      {item.icon}
+                    </div>
+                    <span className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-accent text-background text-xs font-bold flex items-center justify-center">
+                      {index + 1}
+                    </span>
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h4 className="font-bold text-lg">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  </div>
+                </div>)}
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Como funciona na prática */}
-        <div className="text-center mb-16">
-          <h3 className="text-3xl lg:text-4xl font-bold text-foreground">
-            Como funciona <span className="text-accent">na prática</span>
-          </h3>
-        </div>
-
-        {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-          {[{
-            num: "01",
-            title: "Entendemos a operação",
-            desc: "Analisamos sua necessidade e identificamos os modelos ideais."
-          }, {
-            num: "02",
-            title: "Indicamos as condições",
-            desc: "Apresentamos veículos e condições para sua operação."
-          }, {
-            num: "03",
-            title: "Iniciamos a operação",
-            desc: "Estruturamos a frota e iniciamos o suporte contínuo."
-          }].map((step, index) => (
-            <div key={index} className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full border-2 border-accent/50 flex items-center justify-center mb-6">
-                <span className="text-2xl font-bold text-accent">{step.num}</span>
-              </div>
-              <h4 className="font-bold text-lg text-foreground mb-2">{step.title}</h4>
-              <p className="text-sm text-muted-foreground">{step.desc}</p>
+          {/* Stats Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">500+</span>
+              <p className="text-muted-foreground mt-2">Clientes atendidos em BH e região</p>
             </div>
-          ))}
-        </div>
+            
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute bottom-2 left-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">24h</span>
+              <p className="text-muted-foreground mt-2">Suporte dedicado à sua operação</p>
+            </div>
+            
+            <div className="carflex-card p-8 text-center relative overflow-hidden">
+              <div className="absolute top-2 left-2 w-3 h-3 rounded-full bg-accent" />
+              <span className="text-4xl lg:text-5xl font-black text-accent">100%</span>
+              <p className="text-muted-foreground mt-2">Veículo reserva garantido</p>
+            </div>
+          </div>
 
-        {/* Bottom CTA */}
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/50 bg-card/30">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <p className="text-foreground">
-              <span className="font-bold">Sem burocracia.</span> Sem soluções improvisadas.
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <p className="text-lg">
+              Se o veículo é parte da operação,{" "}
+              <span className="font-bold text-accent">a Carflex faz sentido.</span>
             </p>
           </div>
         </div>
       </div>
-    </section>
-  </>;
+    </section>;
 };
 export default DifferentialsSection;
