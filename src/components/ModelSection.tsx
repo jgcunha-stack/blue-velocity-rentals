@@ -34,7 +34,7 @@ const ModelSection = () => {
       {/* Futuristic background elements */}
       <div className="absolute inset-0">
         {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03] bg-secondary" style={{
+        <div className="absolute inset-0 opacity-[0.03] bg-sidebar" style={{
         backgroundImage: `linear-gradient(hsl(var(--accent)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent)) 1px, transparent 1px)`,
         backgroundSize: '60px 60px'
       }} />
