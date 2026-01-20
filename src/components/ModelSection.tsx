@@ -110,7 +110,7 @@ const ModelSection = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {steps.map((item, index) => <div key={index} className="relative flex flex-col items-center text-center group">
+              {steps.map((item, index) => <div key={index} className="relative flex flex-col items-center text-center group my-0 gap-[10px]">
                   {/* Step number circle */}
                   <div className="relative mb-6">
                     {/* Outer ring */}
