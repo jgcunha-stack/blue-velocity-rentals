@@ -100,20 +100,6 @@ const ClientsSection = () => {
           </div>
         </motion.div>
 
-        {/* Tech Decorations */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex justify-center items-center gap-4 mt-16"
-        >
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-          <div className="w-3 h-3 bg-accent/40 rotate-45 animate-pulse" />
-          <div className="w-32 h-px bg-gradient-to-r from-accent/40 via-accent to-accent/40" />
-          <div className="w-3 h-3 bg-accent/40 rotate-45 animate-pulse" />
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-        </motion.div>
       </div>
     </section>
   );
