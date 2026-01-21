@@ -53,7 +53,7 @@ const Footer = () => {
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li><a href="https://wa.me/5531984503693" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">(31) 98450-3693</a></li>
               <li className="break-all"><a href="mailto:administrativo@carflexlocadora.com.br" className="hover:text-accent transition-colors">administrativo@carflexlocadora.com.br</a></li>
-              <li>Belo Horizonte - MG</li>
+              <li>R. Princesa Isabel, 269 - Ipiranga, BH</li>
             </ul>
           </div>
         </div>

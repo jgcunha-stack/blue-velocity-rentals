@@ -134,7 +134,7 @@ const ContactSection = () => {
                   {[
                     { icon: Phone, label: "Telefone", value: "(31) 98450-3693" },
                     { icon: Mail, label: "E-mail", value: "administrativo@carflexlocadora.com.br" },
-                    { icon: MapPin, label: "Localização", value: "Belo Horizonte - MG" },
+                    { icon: MapPin, label: "Localização", value: "R. Princesa Isabel, 269 - Ipiranga, BH" },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -159,14 +159,14 @@ const ContactSection = () => {
                 {/* Map */}
                 <div className="rounded-2xl overflow-hidden border border-white/10 h-64">
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240218.40169814067!2d-44.10552842852876!3d-19.902430035862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa690cacacf2c33%3A0x5b35795e3ad23997!2sBelo%20Horizonte%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1705000000000!5m2!1spt-BR!2sbr" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.0889!2d-43.9344!3d-19.9089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa697e5a5a5a5a5%3A0x0!2sR.%20Princesa%20Isabel%2C%20269%20-%20Ipiranga%2C%20Belo%20Horizonte%20-%20MG%2C%2031160-110!5e0!3m2!1spt-BR!2sbr!4v1705000000000!5m2!1spt-BR!2sbr" 
                     width="100%" 
                     height="100%" 
                     style={{ border: 0 }} 
                     allowFullScreen 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade" 
-                    title="Localização Carflex" 
+                    title="Localização Carflex - R. Princesa Isabel, 269, Ipiranga, Belo Horizonte" 
                     className="grayscale hover:grayscale-0 transition-all duration-500" 
                   />
                 </div>
