@@ -39,7 +39,7 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 150 }}
-              className="absolute -top-8 -left-4 sm:-left-6 lg:-left-10"
+              className="absolute -top-8 left-2 sm:left-4 lg:left-6"
             >
               <div className="relative group">
                 {/* Sticker background effect */}
