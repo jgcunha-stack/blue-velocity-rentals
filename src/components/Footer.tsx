@@ -54,6 +54,7 @@ const Footer = () => {
               <li><a href="https://wa.me/5531984503693" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">(31) 98450-3693</a></li>
               <li className="break-all"><a href="mailto:administrativo@carflexlocadora.com.br" className="hover:text-accent transition-colors">administrativo@carflexlocadora.com.br</a></li>
               <li>R. Princesa Isabel, 269 - Ipiranga, BH</li>
+              <li className="text-muted-foreground/70">CNPJ: 60.408.100/0001-83</li>
             </ul>
           </div>
         </div>
