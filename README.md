@@ -1,58 +1,10 @@
-# Welcome to your Lovable project
+# Carflex - Locadora de Veículos
 
-## Project info
+Soluções em frota corporativa com foco em continuidade, previsibilidade e redução de risco.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Tecnologias
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+Este projeto é construído com:
 
 - Vite
 - TypeScript
@@ -60,14 +12,61 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como executar localmente
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Pré-requisitos
 
-## Can I connect a custom domain to my Lovable project?
+- Node.js 20.19+ ou 22.12+
+- npm
 
-Yes, you can!
+### Instalação
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```sh
+# Instalar dependências
+npm install
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Iniciar servidor de desenvolvimento
+npm run dev
+```
+
+O servidor estará disponível em `http://localhost:8080`
+
+## Scripts disponíveis
+
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria build de produção
+- `npm run build:dev` - Cria build em modo desenvolvimento
+- `npm run lint` - Executa o linter
+- `npm run preview` - Visualiza o build de produção
+- `npm run test` - Executa os testes
+- `npm run test:watch` - Executa os testes em modo watch
+
+## Estrutura do projeto
+
+```
+src/
+├── components/     # Componentes React
+├── pages/         # Páginas da aplicação
+├── hooks/         # Custom hooks
+├── lib/           # Utilitários
+└── assets/        # Imagens e recursos estáticos
+```
+
+## Desenvolvimento
+
+Para trabalhar neste projeto:
+
+1. Clone o repositório
+2. Instale as dependências com `npm install`
+3. Execute `npm run dev` para iniciar o servidor de desenvolvimento
+4. Faça suas alterações e veja o hot-reload em ação
+
+## Build de produção
+
+Para criar um build de produção:
+
+```sh
+npm run build
+```
+
+Os arquivos serão gerados na pasta `dist/`.
