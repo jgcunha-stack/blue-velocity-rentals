@@ -1,24 +1,18 @@
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import carflexLogoWhite from "@/assets/carflex-logo-white.png";
-
 const Footer = () => {
-  return (
-    <footer className="bg-background border-t border-border/50 py-8 sm:py-12">
+  return <footer className="bg-background border-t border-border/50 py-8 sm:py-12">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Logo and description */}
           <div className="col-span-2 space-y-4">
-            <img 
-              src={carflexLogoWhite} 
-              alt="Carflex - Locadora de Veículos" 
-              className="h-6 sm:h-8 w-auto"
-            />
+            <img src={carflexLogoWhite} alt="Carflex - Locadora de Veículos" className="h-6 sm:h-8 w-auto" />
             <p className="text-xs sm:text-sm text-muted-foreground max-w-sm">
               Locação de veículos pensada para manter operações em movimento. 
               Soluções em frota corporativa com foco em continuidade e previsibilidade.
             </p>
             <div className="flex gap-3 sm:gap-4">
-              <a href="https://instagram.com/carflexlocadora" target="_blank" rel="noopener noreferrer" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
+              <a href="#" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground hover:text-accent" />
               </a>
               <a href="#" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
@@ -34,16 +28,11 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <h4 className="font-bold text-sm sm:text-base text-foreground">Links Rápidos</h4>
             <ul className="space-y-1.5 sm:space-y-2">
-              {["Início", "Sobre", "Modelo", "Frota", "Diferenciais", "Contato"].map((link) => (
-                <li key={link}>
-                  <a 
-                    href={`#${link.toLowerCase()}`}
-                    className="text-xs sm:text-sm text-muted-foreground hover:text-accent transition-colors"
-                  >
+              {["Início", "Sobre", "Modelo", "Frota", "Diferenciais", "Contato"].map(link => <li key={link}>
+                  <a href={`#${link.toLowerCase()}`} className="text-xs sm:text-sm text-muted-foreground hover:text-accent transition-colors">
                     {link}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -51,10 +40,9 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <h4 className="font-bold text-sm sm:text-base text-foreground">Contato</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
-              <li><a href="https://wa.me/5531984503693" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">(31) 98450-3693</a></li>
-              <li className="break-all"><a href="mailto:administrativo@carflexlocadora.com.br" className="hover:text-accent transition-colors">administrativo@carflexlocadora.com.br</a></li>
-              <li>R. Princesa Isabel, 269 - Ipiranga, BH</li>
-              <li className="text-muted-foreground/70">CNPJ: 60.408.100/0001-83</li>
+              <li>(31) 99999-9999</li>
+              <li className="break-all">contato@carflex.com.br</li>
+              <li>Belo Horizonte - MG</li>
             </ul>
           </div>
         </div>
@@ -64,13 +52,11 @@ const Footer = () => {
             © 2026 Carflex Locadora de Veículos. Todos os direitos reservados.
           </p>
           <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
-            <a href="#" className="hover:text-accent transition-colors">Política de Privacidade</a>
-            <a href="#" className="hover:text-accent transition-colors">Termos de Uso</a>
+            
+            
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
