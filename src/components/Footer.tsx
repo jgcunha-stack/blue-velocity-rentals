@@ -49,7 +49,15 @@ const Footer = () => {
 
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
-            © 2026 Carflex Locadora de Veículos. Todos os direitos reservados.
+            © 2026 Carflex Locadora de Veículos. Todos os direitos reservados. | Feito por{" "}
+            <a 
+              href="http://innoapp.com.br/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              @innoapp
+            </a>
           </p>
           <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
             
