@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import heroCar from "@/assets/hero-car.png";
 const HeroSection = () => {
-  return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-secondary pt-20 pb-20">
+  return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-secondary pt-20 pb-8">
     {/* Subtle gradient overlay */}
     <div className="absolute inset-0 bg-gradient-to-b from-secondary via-secondary to-secondary/95" />
 
     {/* Content */}
-    <div className="container mx-auto px-4 relative z-10 text-center py-[40px] my-[20px]">
+    <div className="container mx-auto px-4 relative z-10 text-center py-[40px] mb-0">
       {/* Badge */}
       <motion.div initial={{
         opacity: 0,
@@ -120,13 +120,6 @@ const HeroSection = () => {
         {/* Subtle glow under car */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-accent/20 blur-3xl rounded-full" />
       </motion.div>
-    </div>
-
-    {/* Bottom curve transition */}
-    <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none w-full">
-      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-[80px] block" preserveAspectRatio="none">
-        <path d="M0 80V75C0 75 360 60 720 60C1080 60 1440 75 1440 75V80H0Z" fill="white" />
-      </svg>
     </div>
   </section>;
 };
