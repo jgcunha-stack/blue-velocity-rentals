@@ -3,16 +3,16 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import fleetEconomico from "@/assets/fleet-economico.png";
 import fleetIntermediario from "@/assets/fleet-intermediario.png";
-import fleetPickup from "@/assets/fleet-pickup.png";
-import fleetMinivan from "@/assets/fleet-minivan.png";
+import fleetUtilitarios from "@/assets/fleet-utilitarios.png";
+import fleetHatch from "@/assets/fleet-hatch.png";
 import fleetMoto from "@/assets/fleet-moto.png";
 
 const FleetSection = () => {
   const categories = [
-    { name: "Econômico", image: fleetEconomico, description: "Veículos compactos ideais para operações urbanas", accentColor: "from-blue-500 to-blue-600" },
-    { name: "Intermediário", image: fleetIntermediario, description: "Conforto e eficiência para equipes externas", accentColor: "from-emerald-500 to-emerald-600" },
-    { name: "Pick-up", image: fleetPickup, description: "Força e capacidade para cargas e terrenos diversos", accentColor: "from-amber-500 to-amber-600" },
-    { name: "Mini Van", subtitle: "7 lugares", image: fleetMinivan, description: "Transporte de equipes com conforto e espaço", accentColor: "from-violet-500 to-violet-600" },
+    { name: "Econômico", image: fleetEconomico, description: "Compacto ideal para mobilidade urbana", accentColor: "from-blue-500 to-blue-600" },
+    { name: "Intermediário", image: fleetIntermediario, description: "Confortável e eficiente para deslocamentos", accentColor: "from-emerald-500 to-emerald-600" },
+    { name: "Utilitários", image: fleetUtilitarios, description: "SUV robusto para cargas e diferentes terrenos", accentColor: "from-amber-500 to-amber-600" },
+    { name: "Hatch", image: fleetHatch, description: "Versatilidade e praticidade para o dia a dia", accentColor: "from-violet-500 to-violet-600" },
     { name: "Motos", image: fleetMoto, description: "Agilidade para entregas e deslocamentos rápidos", accentColor: "from-rose-500 to-rose-600" },
   ];
 
@@ -69,7 +69,7 @@ const FleetSection = () => {
             >
               <motion.div
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+                className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-2 sm:p-3 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
@@ -77,7 +77,7 @@ const FleetSection = () => {
                   <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg" />
                 </div>
 
-                <div className="relative h-20 sm:h-28 mb-3 sm:mb-4 flex items-center justify-center flex-shrink-0">
+                <div className="relative h-40 sm:h-48 md:h-52 lg:h-56 mb-1 sm:mb-2 flex items-center justify-center flex-shrink-0">
                   <img 
                     src={category.image} 
                     alt={category.name}
@@ -88,9 +88,6 @@ const FleetSection = () => {
 
                 <div className="text-center space-y-1 sm:space-y-2 flex-grow flex flex-col justify-center">
                   <h3 className="font-bold text-sm sm:text-lg text-secondary group-hover:text-accent transition-colors">{category.name}</h3>
-                  {category.subtitle && (
-                    <span className="inline-block text-[10px] sm:text-xs text-white bg-secondary/80 px-2 py-0.5 rounded-full">{category.subtitle}</span>
-                  )}
                   <p className="text-[10px] sm:text-xs text-secondary/50 leading-relaxed min-h-[2rem] sm:min-h-[2.5rem] hidden sm:block">{category.description}</p>
                 </div>
 
