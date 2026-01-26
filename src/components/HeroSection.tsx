@@ -1,7 +1,7 @@
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroCar from "@/assets/hero-car.png";
+import heroFleet from "@/assets/hero-fleet-composite.png";
 const HeroSection = () => {
   return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-secondary pt-20 pb-8">
     {/* Subtle gradient overlay */}
@@ -116,7 +116,7 @@ const HeroSection = () => {
         duration: 0.8,
         delay: 0.5
       }} className="relative max-w-4xl mx-auto">
-        <img src={heroCar} alt="Veículo premium da frota Carflex" className="w-full h-auto drop-shadow-2xl" />
+        <img src={heroFleet} alt="Frota diversificada Carflex - Polo, Strada e Moto" className="w-full h-auto drop-shadow-2xl" />
         {/* Subtle glow under car */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-accent/20 blur-3xl rounded-full" />
       </motion.div>
