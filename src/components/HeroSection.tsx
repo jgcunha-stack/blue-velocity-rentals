@@ -1,7 +1,7 @@
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroFleet from "@/assets/hero-fleet-composite.png";
+import heroFleet from "@/assets/hero-fleet-branded.png";
 const HeroSection = () => {
   return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-secondary pt-20 pb-8">
     {/* Subtle gradient overlay */}
