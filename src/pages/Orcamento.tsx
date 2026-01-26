@@ -12,10 +12,28 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Vehicle images
+import fleetEconomico from "@/assets/fleet-economico.png";
+import fleetIntermediario from "@/assets/fleet-intermediario.png";
+import fleetUtilitarios from "@/assets/fleet-utilitarios.png";
+import fleetHatch from "@/assets/fleet-hatch.png";
+import fleetMoto from "@/assets/fleet-moto.png";
+
 const Orcamento = () => {
   const [searchParams] = useSearchParams();
-  const categoria = searchParams.get("categoria") || "";
+  const categoria = searchParams.get("categoria") || "Econômico";
   const { toast } = useToast();
+
+  // Vehicle data mapping
+  const veiculosData: Record<string, { image: string; name: string; description: string }> = {
+    "Econômico": { image: fleetEconomico, name: "Econômico", description: "Compacto ideal para mobilidade urbana" },
+    "Intermediário": { image: fleetIntermediario, name: "Intermediário", description: "Confortável e eficiente para deslocamentos" },
+    "Utilitários": { image: fleetUtilitarios, name: "Utilitários", description: "SUV robusto para cargas e diferentes terrenos" },
+    "Hatch": { image: fleetHatch, name: "Hatch", description: "Versatilidade e praticidade para o dia a dia" },
+    "Motos": { image: fleetMoto, name: "Motos", description: "Agilidade para entregas e deslocamentos rápidos" },
+  };
+
+  const veiculoSelecionado = veiculosData[categoria] || veiculosData["Econômico"];
 
   const [formData, setFormData] = useState({
     perfil: "",
@@ -37,14 +55,6 @@ const Orcamento = () => {
 
   const [captcha, setCaptcha] = useState({ num1: Math.floor(Math.random() * 10), num2: Math.floor(Math.random() * 10) });
   const [captchaAnswer, setCaptchaAnswer] = useState("");
-
-  const categorias = [
-    "Econômico",
-    "Intermediário",
-    "Utilitários",
-    "Hatch",
-    "Motos",
-  ];
 
   const horarios = [
     "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
@@ -84,7 +94,7 @@ const Orcamento = () => {
     // Build WhatsApp message
     const message = `*PEDIDO DE ORÇAMENTO*%0A%0A` +
       `*Tipo de Locação:* ${formData.perfil}%0A` +
-      `*Grupo de Veículos:* ${formData.grupoVeiculo}%0A%0A` +
+      `*Grupo de Veículos:* ${categoria}%0A%0A` +
       `*DADOS DA EMPRESA*%0A` +
       `Nome da Empresa: ${formData.nomeEmpresa}%0A` +
       `CNPJ: ${formData.cnpj}%0A` +
@@ -134,11 +144,6 @@ const Orcamento = () => {
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-foreground">
               SOLICITAR ORÇAMENTO
             </h1>
-            {categoria && (
-              <p className="text-accent text-lg md:text-xl font-semibold mt-2">
-                Categoria: {categoria}
-              </p>
-            )}
           </motion.div>
         </div>
         
@@ -154,7 +159,7 @@ const Orcamento = () => {
             {" > "}
             <Link to="/#frota" className="hover:text-accent transition-colors">Nossa Frota</Link>
             {" > "}
-            <span className="text-accent font-medium">Solicitar Orçamento</span>
+            <span className="text-accent font-medium">Solicitar Orçamento - {categoria}</span>
           </p>
         </div>
       </div>
@@ -169,49 +174,49 @@ const Orcamento = () => {
           >
             <form onSubmit={handleSubmit} className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                {/* Left Column - Vehicle Info */}
+                {/* Left Column - Vehicle Display & Location Data */}
                 <div className="space-y-6">
-                  {/* Tipo de Locação */}
+                  {/* Vehicle Card */}
                   <div className="bg-secondary/50 rounded-2xl p-6 border border-border/30">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
                         <Car className="w-5 h-5 text-accent" />
                       </div>
-                      <h2 className="text-lg font-bold text-foreground">TIPO DE LOCAÇÃO</h2>
+                      <h2 className="text-lg font-bold text-foreground">VEÍCULO SELECIONADO</h2>
                     </div>
 
-                    <p className="text-sm text-accent font-medium mb-5 bg-accent/10 p-3 rounded-lg">
-                      *Nossas locações para Pessoa Física (PF) estão temporariamente suspensas.
-                    </p>
+                    {/* Vehicle Image */}
+                    <div className="bg-foreground/5 rounded-xl p-4 mb-4">
+                      <img 
+                        src={veiculoSelecionado.image} 
+                        alt={veiculoSelecionado.name}
+                        className="w-full h-48 object-contain"
+                      />
+                    </div>
 
-                    <div className="space-y-4">
-                      <div>
-                        <Label className="text-muted-foreground text-sm mb-2 block">Selecione um perfil</Label>
-                        <Select value={formData.perfil} onValueChange={(v) => setFormData({...formData, perfil: v})}>
-                          <SelectTrigger className="bg-secondary border-border/50 text-foreground">
-                            <SelectValue placeholder="Selecione um perfil" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="pj">Pessoa Jurídica (PJ)</SelectItem>
-                            <SelectItem value="mei">MEI</SelectItem>
-                            <SelectItem value="autonomo">Autônomo com CNPJ</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                    {/* Vehicle Info */}
+                    <div className="text-center space-y-2">
+                      <h3 className="text-2xl font-black text-accent">{veiculoSelecionado.name.toUpperCase()}</h3>
+                      <p className="text-muted-foreground text-sm">{veiculoSelecionado.description}</p>
+                      <p className="text-xs text-muted-foreground/60 italic">*Imagem ilustrativa</p>
+                    </div>
 
-                      <div>
-                        <Label className="text-muted-foreground text-sm mb-2 block">Grupo de veículos escolhido</Label>
-                        <Select value={formData.grupoVeiculo} onValueChange={(v) => setFormData({...formData, grupoVeiculo: v})}>
-                          <SelectTrigger className="bg-secondary border-border/50 text-foreground">
-                            <SelectValue placeholder="Selecione uma categoria" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {categorias.map((cat) => (
-                              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                    {/* Profile Selection */}
+                    <div className="mt-6 pt-4 border-t border-border/30">
+                      <p className="text-sm text-accent font-medium mb-4 bg-accent/10 p-3 rounded-lg">
+                        *Nossas locações para Pessoa Física (PF) estão temporariamente suspensas.
+                      </p>
+                      <Label className="text-muted-foreground text-sm mb-2 block">Selecione um perfil</Label>
+                      <Select value={formData.perfil} onValueChange={(v) => setFormData({...formData, perfil: v})}>
+                        <SelectTrigger className="bg-secondary border-border/50 text-foreground">
+                          <SelectValue placeholder="Selecione um perfil" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="pj">Pessoa Jurídica (PJ)</SelectItem>
+                          <SelectItem value="mei">MEI</SelectItem>
+                          <SelectItem value="autonomo">Autônomo com CNPJ</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
