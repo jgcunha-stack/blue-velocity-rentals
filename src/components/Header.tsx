@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import carflexLogoWhite from "@/assets/carflex-logo-white.png";
@@ -6,6 +7,8 @@ import carflexLogoWhite from "@/assets/carflex-logo-white.png";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +27,31 @@ const Header = () => {
     { href: "#contato", label: "Contato" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== "/") {
+      navigate("/" + href);
+    } else {
+      // On home page, just scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -35,7 +63,7 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center">
+          <a href="/" onClick={handleLogoClick} className="flex items-center">
             <img 
               src={carflexLogoWhite} 
               alt="Carflex - Locadora de Veículos" 
@@ -49,6 +77,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
               >
                 {link.label}
@@ -85,7 +114,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
               >
                 {link.label}
