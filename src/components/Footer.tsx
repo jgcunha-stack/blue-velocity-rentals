@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Facebook } from "lucide-react";
+import { Instagram } from "lucide-react";
 import carflexLogoWhite from "@/assets/carflex-logo-white.png";
 const Footer = () => {
   return <footer className="bg-background border-t border-border/50 py-8 sm:py-12">
@@ -12,14 +12,14 @@ const Footer = () => {
               Soluções em frota corporativa com foco em continuidade e previsibilidade.
             </p>
             <div className="flex gap-3 sm:gap-4">
-              <a href="#" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
+              <a 
+                href="https://www.instagram.com/carflexlocadora/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors"
+                aria-label="Siga-nos no Instagram"
+              >
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground hover:text-accent" />
-              </a>
-              <a href="#" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
-                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground hover:text-accent" />
-              </a>
-              <a href="#" className="p-1.5 sm:p-2 rounded-lg bg-secondary hover:bg-accent/20 transition-colors">
-                <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground hover:text-accent" />
               </a>
             </div>
           </div>
@@ -40,7 +40,7 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <h4 className="font-bold text-sm sm:text-base text-foreground">Contato</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
-              <li>(31) 99999-9999</li>
+              <li>(31) 98450-3693</li>
               <li className="break-all">contato@carflex.com.br</li>
               <li>Belo Horizonte - MG</li>
             </ul>
