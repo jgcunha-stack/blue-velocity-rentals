@@ -6,6 +6,7 @@ import ModelSection from "@/components/ModelSection";
 import FleetSection from "@/components/FleetSection";
 import DifferentialsSection from "@/components/DifferentialsSection";
 import ClientsSection from "@/components/ClientsSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloatButton from "@/components/WhatsAppFloatButton";
@@ -22,6 +23,7 @@ const Index = () => {
         <DifferentialsSection />
         <ClientsSection />
         <PrinciplesSection />
+        <ReviewsSection />
         <ContactSection />
       </main>
       <Footer />
