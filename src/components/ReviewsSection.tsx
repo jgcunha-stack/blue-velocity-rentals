@@ -1,6 +1,7 @@
 import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import reviewsBackground from "@/assets/reviews-background.png";
+import clientPhoto from "@/assets/reviews/client-photo.png";
 
 const ReviewsSection = () => {
   const reviews = [
@@ -100,10 +101,12 @@ const ReviewsSection = () => {
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                    <span className="text-accent font-bold text-lg">
-                      {review.name.charAt(0)}
-                    </span>
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent/30">
+                    <img 
+                      src={clientPhoto} 
+                      alt={review.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <p className="font-semibold text-secondary">{review.name}</p>
