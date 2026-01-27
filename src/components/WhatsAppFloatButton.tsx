@@ -7,33 +7,36 @@ const departments = [
     id: "comercial",
     label: "Comercial",
     icon: Briefcase,
-    message: "Olá, gostaria de falar com o setor Comercial.",
+    whatsappNumber: "5531984503693", // Número do setor Comercial
+    message: "Olá! Vim pelo site da Carflex e gostaria de solicitar um orçamento para locação de veículos.",
   },
   {
     id: "operacional",
     label: "Operacional",
     icon: Wrench,
-    message: "Olá, gostaria de falar com o setor Operacional.",
+    whatsappNumber: "5531984503693", // Número do setor Operacional
+    message: "Olá! Preciso de suporte operacional da Carflex. Podem me ajudar?",
   },
   {
     id: "financeiro",
     label: "Financeiro",
     icon: DollarSign,
-    message: "Olá, gostaria de falar com o setor Financeiro.",
+    whatsappNumber: "5531984503693", // Número do setor Financeiro
+    message: "Olá! Gostaria de falar com o setor financeiro da Carflex sobre questões de pagamento ou faturamento.",
   },
   {
     id: "outros",
     label: "Outros Assuntos",
     icon: HelpCircle,
-    message: "Olá, vim pelo site e gostaria de mais informações.",
+    whatsappNumber: "5531984503693", // Número para outros assuntos
+    message: "Olá! Vim pelo site da Carflex e tenho uma dúvida ou solicitação.",
   },
 ];
 
 const WhatsAppFloatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const whatsappNumber = "5531984503693";
 
-  const handleDepartmentClick = (message: string) => {
+  const handleDepartmentClick = (whatsappNumber: string, message: string) => {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
     setIsOpen(false);
@@ -90,7 +93,7 @@ const WhatsAppFloatButton = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => handleDepartmentClick(dept.message)}
+                    onClick={() => handleDepartmentClick(dept.whatsappNumber, dept.message)}
                     className="w-full flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-accent/10 border border-transparent hover:border-accent/30 transition-all duration-200 group"
                   >
                     <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">

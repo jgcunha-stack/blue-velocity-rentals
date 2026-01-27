@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Car, User, MapPin, Check } from "lucide-react";
@@ -7,24 +7,97 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Formatting functions
+const formatCPF = (value: string) => {
+  const numbers = value.replace(/\D/g, "");
+  if (numbers.length <= 11) {
+    return numbers
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  }
+  return value;
+};
+
+const formatCNPJ = (value: string) => {
+  const numbers = value.replace(/\D/g, "");
+  if (numbers.length <= 14) {
+    return numbers
+      .replace(/(\d{2})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1/$2")
+      .replace(/(\d{4})(\d{1,2})$/, "$1-$2");
+  }
+  return value;
+};
+
+const formatPhone = (value: string) => {
+  const numbers = value.replace(/\D/g, "");
+  if (numbers.length <= 11) {
+    if (numbers.length <= 10) {
+      return numbers
+        .replace(/(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{4})(\d{1,4})$/, "$1-$2");
+    } else {
+      return numbers
+        .replace(/(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{5})(\d{1,4})$/, "$1-$2");
+    }
+  }
+  return value;
+};
+
 // Vehicle images
-import fleetEconomico from "@/assets/fleet-economico.png";
-import fleetIntermediario from "@/assets/fleet-intermediario.png";
-import fleetUtilitarios from "@/assets/fleet-utilitarios.png";
-import fleetHatch from "@/assets/fleet-hatch.png";
-import fleetMoto from "@/assets/fleet-moto.png";
+import fleetEconomico from "@/assets/kiwid.png";
+import fleetIntermediario from "@/assets/polotrack.png";
+import fleetUtilitarios from "@/assets/tcross.png";
+import fleetHatch from "@/assets/ka.png";
+import fleetMoto from "@/assets/bros.png";
 
 const Orcamento = () => {
   const [searchParams] = useSearchParams();
   const categoriaParam = searchParams.get("categoria");
   const { toast } = useToast();
 
-  // Vehicle data list
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Vehicle groups and their vehicles
+  const gruposVeiculos = {
+    "Econômico": [
+      { id: "Kwid", name: "Kwid" },
+      { id: "Onix", name: "Onix" },
+      { id: "HB20", name: "HB20" },
+    ],
+    "Intermediário": [
+      { id: "Polo Track", name: "Polo Track" },
+      { id: "Virtus", name: "Virtus" },
+      { id: "Civic", name: "Civic" },
+    ],
+    "Utilitários": [
+      { id: "T-Cross", name: "T-Cross" },
+      { id: "Compass", name: "Compass" },
+      { id: "Tiguan", name: "Tiguan" },
+    ],
+    "Hatch": [
+      { id: "Ka", name: "Ka" },
+      { id: "Gol", name: "Gol" },
+      { id: "208", name: "208" },
+    ],
+    "Motos": [
+      { id: "Bros", name: "Bros" },
+      { id: "CG", name: "CG" },
+      { id: "XRE", name: "XRE" },
+    ],
+  };
+
+  // Vehicle data list for images
   const veiculosList = [
     { id: "Econômico", image: fleetEconomico, name: "Econômico", description: "Compacto ideal para mobilidade urbana" },
     { id: "Intermediário", image: fleetIntermediario, name: "Intermediário", description: "Confortável e eficiente para deslocamentos" },
@@ -33,96 +106,134 @@ const Orcamento = () => {
     { id: "Motos", image: fleetMoto, name: "Motos", description: "Agilidade para entregas e deslocamentos rápidos" },
   ];
 
-  const [selectedVeiculo, setSelectedVeiculo] = useState(categoriaParam || "");
+  const [selectedGrupo, setSelectedGrupo] = useState(categoriaParam || "");
+  const [selectedVeiculo, setSelectedVeiculo] = useState("");
 
   const [formData, setFormData] = useState({
-    perfil: "",
+    tipoDocumento: "",
     nomeEmpresa: "",
     cnpj: "",
+    cpf: "",
     nome: "",
     email: "",
     celular: "",
     comoNosEncontrou: "",
-    localRetirada: "",
+    localRetirada: "sede",
     dataRetirada: "",
-    horarioRetirada: "",
     dataEntrega: "",
-    horarioEntrega: "",
-    tempoLocacao: "",
-    franquias: [] as string[],
+    duracaoContrato: "",
   });
 
-  const [captcha, setCaptcha] = useState({ num1: Math.floor(Math.random() * 10), num2: Math.floor(Math.random() * 10) });
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-
-  const horarios = [
-    "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-    "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-    "17:00", "17:30", "18:00"
-  ];
-
-  const franquiasOptions = [
-    "Franquia 2.000km/mês",
-    "Franquia 3.000km/mês",
-    "Franquia 4.000km/mês",
-    "Franquia 5.000km/mês",
-  ];
-
-  const handleFranquiaChange = (franquia: string, checked: boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      franquias: checked 
-        ? [...prev.franquias, franquia]
-        : prev.franquias.filter(f => f !== franquia)
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!selectedGrupo) {
+      toast({
+        title: "Selecione um grupo",
+        description: "Por favor, selecione um grupo de veículos.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!selectedVeiculo) {
       toast({
         title: "Selecione um veículo",
-        description: "Por favor, selecione uma categoria de veículo.",
+        description: "Por favor, selecione um veículo do grupo.",
         variant: "destructive",
       });
       return;
     }
 
-    if (parseInt(captchaAnswer) !== captcha.num1 + captcha.num2) {
+    // Build email message
+    const emailBody = `
+PEDIDO DE ORÇAMENTO - CARFLEX
+
+TIPO DE LOCAÇÃO
+Grupo: ${selectedGrupo || "Não informado"}
+Veículo do Grupo: ${selectedVeiculo || "Não informado"}
+
+DADOS DA EMPRESA
+Nome da Empresa: ${formData.nomeEmpresa}
+${formData.tipoDocumento === "cpf" ? "CPF" : formData.tipoDocumento === "cnpj" ? "CNPJ" : "Documento"}: ${formData.tipoDocumento === "cpf" ? formData.cpf : formData.tipoDocumento === "cnpj" ? formData.cnpj : "Não informado"}
+Contato: ${formData.nome}
+E-mail: ${formData.email}
+Celular: ${formData.celular}
+Como nos encontrou: ${formData.comoNosEncontrou || "Não informado"}
+
+DADOS DA LOCAÇÃO
+Local de Retirada: ${formData.localRetirada || "Não informado"}
+Data da Retirada: ${formData.dataRetirada || "Não informado"}
+Data da Entrega: ${formData.dataEntrega || "Não informado"}
+Duração do Contrato: ${formData.duracaoContrato === "3meses" ? "3 meses" : formData.duracaoContrato === "12meses" ? "12 meses" : "Não informado"}
+
+---
+Este email foi enviado automaticamente através do formulário de orçamento do site Carflex.
+    `.trim();
+
+    try {
+      // Usar FormSubmit - serviço gratuito e simples
+      const formDataToSend = new FormData();
+      formDataToSend.append("email", "pedrodiasnovais1@gmail.com");
+      formDataToSend.append("subject", `Novo Pedido de Orçamento - ${formData.nomeEmpresa}`);
+      formDataToSend.append("message", emailBody);
+      formDataToSend.append("_replyto", formData.email);
+      formDataToSend.append("_cc", formData.email);
+
+      const response = await fetch("https://formsubmit.co/ajax/pedrodiasnovais1@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          email: "pedrodiasnovais1@gmail.com",
+          subject: `Novo Pedido de Orçamento - ${formData.nomeEmpresa}`,
+          message: emailBody,
+          _replyto: formData.email,
+          _cc: formData.email,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Orçamento enviado com sucesso!",
+          description: "Recebemos seu pedido e entraremos em contato em breve.",
+        });
+
+        // Reset form
+        setFormData({
+          tipoDocumento: "",
+          nomeEmpresa: "",
+          cnpj: "",
+          cpf: "",
+          nome: "",
+          email: "",
+          celular: "",
+          comoNosEncontrou: "",
+          localRetirada: "sede",
+          dataRetirada: "",
+          dataEntrega: "",
+          duracaoContrato: "",
+        });
+        setSelectedGrupo("");
+        setSelectedVeiculo("");
+      } else {
+        throw new Error("Erro ao enviar");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+      
+      // Fallback: usar mailto
+      const mailtoSubject = encodeURIComponent(`Novo Pedido de Orçamento - ${formData.nomeEmpresa}`);
+      const mailtoBody = encodeURIComponent(emailBody);
+      window.location.href = `mailto:pedrodiasnovais1@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+      
       toast({
-        title: "Erro no captcha",
-        description: "Por favor, responda corretamente a operação matemática.",
-        variant: "destructive",
+        title: "Abrindo cliente de email",
+        description: "Preencha seu cliente de email e envie para pedrodiasnovais1@gmail.com",
       });
-      return;
     }
-
-    // Build WhatsApp message
-    const message = `*PEDIDO DE ORÇAMENTO*%0A%0A` +
-      `*Tipo de Locação:* ${formData.perfil}%0A` +
-      `*Grupo de Veículos:* ${selectedVeiculo}%0A%0A` +
-      `*DADOS DA EMPRESA*%0A` +
-      `Nome da Empresa: ${formData.nomeEmpresa}%0A` +
-      `CNPJ: ${formData.cnpj}%0A` +
-      `Contato: ${formData.nome}%0A` +
-      `E-mail: ${formData.email}%0A` +
-      `Celular: ${formData.celular}%0A` +
-      `Como nos encontrou: ${formData.comoNosEncontrou}%0A%0A` +
-      `*DADOS DA LOCAÇÃO*%0A` +
-      `Local de Retirada: ${formData.localRetirada}%0A` +
-      `Data/Hora Retirada: ${formData.dataRetirada} às ${formData.horarioRetirada}%0A` +
-      `Data/Hora Entrega: ${formData.dataEntrega} às ${formData.horarioEntrega}%0A` +
-      `Tempo de Locação: ${formData.tempoLocacao}%0A` +
-      `Franquias: ${formData.franquias.join(", ") || "Não selecionada"}`;
-
-    window.open(`https://wa.me/5531984503693?text=${message}`, "_blank");
-    
-    toast({
-      title: "Orçamento enviado!",
-      description: "Você será redirecionado para o WhatsApp.",
-    });
   };
 
   return (
@@ -199,20 +310,28 @@ const Orcamento = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        onClick={() => setSelectedVeiculo(veiculo.id)}
+                        onClick={() => {
+                          setSelectedGrupo(veiculo.id);
+                          setSelectedVeiculo(""); // Reset veículo quando grupo muda
+                        }}
                         className={`cursor-pointer rounded-xl sm:rounded-2xl p-3 sm:p-4 border-2 transition-all duration-300 ${
-                          selectedVeiculo === veiculo.id
+                          selectedGrupo === veiculo.id
                             ? "border-accent bg-accent/10 shadow-lg shadow-accent/20"
                             : "border-border/30 bg-secondary/30 hover:border-accent/50 hover:bg-secondary/50"
                         }`}
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           {/* Vehicle Image */}
-                          <div className="w-24 h-16 sm:w-32 sm:h-20 bg-foreground/5 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
+                          <div className="w-32 h-20 sm:w-40 sm:h-28 md:w-48 md:h-32 bg-foreground/5 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
                             <img 
                               src={veiculo.image} 
                               alt={veiculo.name}
-                              className="w-full h-full object-contain"
+                              className="object-contain"
+                              style={{ 
+                                width: '140px', 
+                                height: 'auto',
+                                maxWidth: 'none'
+                              }}
                             />
                           </div>
 
@@ -261,28 +380,38 @@ const Orcamento = () => {
 
                     <div className="space-y-3 sm:space-y-4">
                       <div>
-                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Selecione um perfil</Label>
-                        <Select value={formData.perfil} onValueChange={(v) => setFormData({...formData, perfil: v})}>
+                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Grupo</Label>
+                        <Select 
+                          value={selectedGrupo} 
+                          onValueChange={(v) => {
+                            setSelectedGrupo(v);
+                            setSelectedVeiculo(""); // Reset veículo quando grupo muda
+                          }}
+                        >
                           <SelectTrigger className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm">
-                            <SelectValue placeholder="Selecione um perfil" />
+                            <SelectValue placeholder="Selecione um grupo" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="pj">Pessoa Jurídica (PJ)</SelectItem>
-                            <SelectItem value="mei">MEI</SelectItem>
-                            <SelectItem value="autonomo">Autônomo com CNPJ</SelectItem>
+                            {veiculosList.map((v) => (
+                              <SelectItem key={v.id} value={v.id}>{v.name}</SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div>
-                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Grupo de veículos escolhido</Label>
-                        <Select value={selectedVeiculo} onValueChange={setSelectedVeiculo}>
+                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Veículos do grupo</Label>
+                        <Select 
+                          value={selectedVeiculo} 
+                          onValueChange={setSelectedVeiculo}
+                          disabled={!selectedGrupo}
+                        >
                           <SelectTrigger className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm">
-                            <SelectValue placeholder="Selecione uma categoria" />
+                            <SelectValue placeholder={selectedGrupo ? "Selecione um veículo" : "Primeiro selecione um grupo"} />
                           </SelectTrigger>
                           <SelectContent>
-                            {veiculosList.map((v) => (
-                              <SelectItem key={v.id} value={v.id}>{v.name}</SelectItem>
+                            {selectedGrupo && gruposVeiculos[selectedGrupo as keyof typeof gruposVeiculos]?.map((veiculo) => (
+                              <SelectItem key={veiculo.id} value={veiculo.id}>{veiculo.name}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -301,6 +430,19 @@ const Orcamento = () => {
 
                     <div className="space-y-3 sm:space-y-4">
                       <div>
+                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">CPF ou CNPJ</Label>
+                        <Select value={formData.tipoDocumento} onValueChange={(v) => setFormData({...formData, tipoDocumento: v, cnpj: "", cpf: ""})}>
+                          <SelectTrigger className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm">
+                            <SelectValue placeholder="Selecione CPF ou CNPJ" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="cpf">CPF</SelectItem>
+                            <SelectItem value="cnpj">CNPJ</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
                         <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Nome da empresa</Label>
                         <Input 
                           value={formData.nomeEmpresa}
@@ -310,16 +452,33 @@ const Orcamento = () => {
                         />
                       </div>
 
-                      <div>
-                        <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">CNPJ</Label>
-                        <Input 
-                          value={formData.cnpj}
-                          onChange={(e) => setFormData({...formData, cnpj: e.target.value})}
-                          placeholder="00.000.000/0000-00"
-                          className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground/50 h-10 sm:h-11 text-sm"
-                          required
-                        />
-                      </div>
+                      {formData.tipoDocumento === "cpf" && (
+                        <div>
+                          <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">CPF</Label>
+                          <Input 
+                            value={formData.cpf}
+                            onChange={(e) => setFormData({...formData, cpf: formatCPF(e.target.value)})}
+                            placeholder="000.000.000-00"
+                            className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground/50 h-10 sm:h-11 text-sm"
+                            maxLength={14}
+                            required
+                          />
+                        </div>
+                      )}
+
+                      {formData.tipoDocumento === "cnpj" && (
+                        <div>
+                          <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">CNPJ</Label>
+                          <Input 
+                            value={formData.cnpj}
+                            onChange={(e) => setFormData({...formData, cnpj: formatCNPJ(e.target.value)})}
+                            placeholder="00.000.000/0000-00"
+                            className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground/50 h-10 sm:h-11 text-sm"
+                            maxLength={18}
+                            required
+                          />
+                        </div>
+                      )}
 
                       <div>
                         <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Seu nome</Label>
@@ -346,9 +505,10 @@ const Orcamento = () => {
                         <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Celular</Label>
                         <Input 
                           value={formData.celular}
-                          onChange={(e) => setFormData({...formData, celular: e.target.value})}
+                          onChange={(e) => setFormData({...formData, celular: formatPhone(e.target.value)})}
                           placeholder="(00) 00000-0000"
                           className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground/50 h-10 sm:h-11 text-sm"
+                          maxLength={15}
                           required
                         />
                       </div>
@@ -388,8 +548,6 @@ const Orcamento = () => {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="sede">Sede - Rua Princesa Isabel, 269 - Ipiranga, BH</SelectItem>
-                            <SelectItem value="aeroporto">Aeroporto de Confins</SelectItem>
-                            <SelectItem value="outro">Outro (combinar)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -405,22 +563,6 @@ const Orcamento = () => {
                           />
                         </div>
                         <div>
-                          <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Horário da retirada</Label>
-                          <Select value={formData.horarioRetirada} onValueChange={(v) => setFormData({...formData, horarioRetirada: v})}>
-                            <SelectTrigger className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm">
-                              <SelectValue placeholder="Horário" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {horarios.map((h) => (
-                                <SelectItem key={h} value={h}>{h}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <div>
                           <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Data da entrega</Label>
                           <Input 
                             type="date" 
@@ -429,69 +571,22 @@ const Orcamento = () => {
                             className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm"
                           />
                         </div>
-                        <div>
-                          <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Horário da entrega</Label>
-                          <Select value={formData.horarioEntrega} onValueChange={(v) => setFormData({...formData, horarioEntrega: v})}>
-                            <SelectTrigger className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm">
-                              <SelectValue placeholder="Horário" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {horarios.map((h) => (
-                                <SelectItem key={h} value={h}>{h}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
                       </div>
 
                       <div>
-                        <Label className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 block">Quanto tempo você deseja permanecer com o veículo?</Label>
-                        <RadioGroup value={formData.tempoLocacao} onValueChange={(v) => setFormData({...formData, tempoLocacao: v})} className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+                        <Label className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 block">Duração do Contrato</Label>
+                        <RadioGroup value={formData.duracaoContrato} onValueChange={(v) => setFormData({...formData, duracaoContrato: v})} className="flex flex-col gap-2 sm:flex-row sm:gap-4">
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="menos30" id="menos30" className="border-accent text-accent" />
-                            <Label htmlFor="menos30" className="font-normal cursor-pointer text-foreground text-xs sm:text-sm">Menos de 30 dias</Label>
+                            <RadioGroupItem value="3meses" id="3meses" className="border-accent text-accent" />
+                            <Label htmlFor="3meses" className="font-normal cursor-pointer text-foreground text-xs sm:text-sm">3 meses</Label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="mais30" id="mais30" className="border-accent text-accent" />
-                            <Label htmlFor="mais30" className="font-normal cursor-pointer text-foreground text-xs sm:text-sm">30 dias ou mais</Label>
+                            <RadioGroupItem value="12meses" id="12meses" className="border-accent text-accent" />
+                            <Label htmlFor="12meses" className="font-normal cursor-pointer text-foreground text-xs sm:text-sm">12 meses</Label>
                           </div>
                         </RadioGroup>
                       </div>
-
-                      <div>
-                        <Label className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 block">Selecione a(s) franquia(s) desejada(s)</Label>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                          {franquiasOptions.map((franquia) => (
-                            <div key={franquia} className="flex items-center space-x-2">
-                              <Checkbox 
-                                id={franquia} 
-                                checked={formData.franquias.includes(franquia)}
-                                onCheckedChange={(checked) => handleFranquiaChange(franquia, checked as boolean)}
-                                className="border-accent data-[state=checked]:bg-accent flex-shrink-0"
-                              />
-                              <Label htmlFor={franquia} className="font-normal cursor-pointer text-foreground text-xs sm:text-sm">{franquia}</Label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
                     </div>
-                  </div>
-
-                  {/* Captcha & Submit */}
-                  <div className="bg-secondary/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/30">
-                    <div className="bg-accent/10 rounded-lg sm:rounded-xl p-4 sm:p-5 mb-3 sm:mb-4 flex items-center justify-center gap-3 sm:gap-4 text-2xl sm:text-3xl font-black text-foreground">
-                      <span>{captcha.num1}</span>
-                      <span className="text-accent">+</span>
-                      <span>{captcha.num2}</span>
-                    </div>
-                    <Label className="text-muted-foreground text-xs sm:text-sm mb-1.5 sm:mb-2 block">Insira a resposta da operação:</Label>
-                    <Input 
-                      type="number"
-                      value={captchaAnswer}
-                      onChange={(e) => setCaptchaAnswer(e.target.value)}
-                      className="bg-secondary border-border/50 text-foreground h-10 sm:h-11 text-sm"
-                      required
-                    />
                   </div>
 
                   <Button 

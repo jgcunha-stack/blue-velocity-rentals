@@ -6,10 +6,10 @@ import fleetBackground from "@/assets/fleet-background.png";
 
 const ContactSection = () => {
   const faqs = [
-    { question: "Qual o prazo mínimo de locação?", answer: "Trabalhamos com contratos a partir de 12 meses para garantir as melhores condições e valores para sua empresa. Consulte-nos para casos especiais." },
+    { question: "Qual o prazo mínimo de locação?", answer: "Trabalhamos com contratos de 3 meses para Uber e 12 meses para locações normais, garantindo as melhores condições e valores para sua empresa. Consulte-nos para casos especiais." },
     { question: "Vocês oferecem veículo reserva?", answer: "Sim! Oferecemos veículo reserva ilimitado sem custo adicional. Nunca deixamos sua operação parar." },
     { question: "Quais tipos de veículos estão disponíveis?", answer: "Nossa frota inclui veículos econômicos, intermediários, pick-ups, mini vans (7 lugares) e motos. Todos adaptados às necessidades corporativas." },
-    { question: "Vocês atendem em quais regiões?", answer: "Atendemos Belo Horizonte e toda a região metropolitana. Fazemos entrega e recolhimento sem custo adicional." },
+    { question: "Vocês atendem em quais regiões?", answer: "Atendemos todo o Brasil. Fazemos entrega e recolhimento sem custo adicional." },
     { question: "O que está incluído no valor da locação?", answer: "Nossos pacotes incluem manutenção preventiva e corretiva, IPVA, licenciamento, seguro e assistência 24 horas. Não cobramos lavagem simples nem condutor adicional." },
     { question: "Como funciona o suporte 24 horas?", answer: "Nossa equipe está disponível 24 horas por dia, 7 dias por semana, para atender qualquer necessidade da sua operação, desde assistência na estrada até troca de veículos." },
   ];

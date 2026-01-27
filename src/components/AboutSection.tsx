@@ -1,5 +1,7 @@
-import { ThumbsUp, DollarSign, Shield, Clock } from "lucide-react";
+import { ThumbsUp, DollarSign, Shield, Clock, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import aboutCoupleImage from "@/assets/about-couple-car.jpg";
 import carflexStamp from "@/assets/carflex-stamp.png";
 
@@ -98,6 +100,24 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 bg-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-gray-200/50 shadow-sm max-w-md w-full">
+                <p className="text-secondary font-medium text-xs sm:text-sm text-left">Precisa de uma categoria de veículo?</p>
+                <Link to="/orcamento" className="w-full sm:w-auto flex-shrink-0">
+                  <Button size="sm" className="gap-2 bg-accent hover:bg-accent/90 text-white font-semibold rounded-full shadow-md shadow-accent/20 w-full sm:w-auto">
+                    Fale Conosco
+                    <ArrowRight className="w-3 h-3" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

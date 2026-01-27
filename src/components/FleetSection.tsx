@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import fleetEconomico from "@/assets/fleet-economico.png";
-import fleetIntermediario from "@/assets/fleet-intermediario.png";
-import fleetUtilitarios from "@/assets/fleet-utilitarios.png";
-import fleetHatch from "@/assets/fleet-hatch.png";
-import fleetMoto from "@/assets/fleet-moto.png";
+import fleetEconomico from "@/assets/kiwid.png";
+import fleetIntermediario from "@/assets/polotrack.png";
+import fleetUtilitarios from "@/assets/tcross.png";
+import fleetHatch from "@/assets/ka.png";
+import fleetMoto from "@/assets/bros.png";
 
 const FleetSection = () => {
   const categories = [
@@ -21,7 +21,7 @@ const FleetSection = () => {
     <section id="frota" className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Futuristic background pattern */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(hsl(var(--secondary)) 1px, transparent 1px),
@@ -29,7 +29,7 @@ const FleetSection = () => {
             backgroundSize: '60px 60px'
           }}
         />
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 0% 50%, hsl(var(--accent) / 0.08) 0%, transparent 50%),
@@ -73,16 +73,20 @@ const FleetSection = () => {
                 className="relative h-full bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-2 sm:p-3 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                
+
                 <div className="absolute top-0 right-0 w-16 h-16">
                   <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-gray-200 group-hover:border-accent/50 transition-colors rounded-tr-lg" />
                 </div>
 
-                <div className="relative h-40 sm:h-48 md:h-52 lg:h-56 mb-1 sm:mb-2 flex items-center justify-center flex-shrink-0">
-                  <img 
-                    src={category.image} 
+                <div className="relative h-56 sm:h-64 md:h-80 lg:h-96 mb-1 sm:mb-2 flex items-center justify-center flex-shrink-0 overflow-visible">
+                  <img
+                    src={category.image}
                     alt={category.name}
-                    className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-500"
+                    className={`h-full w-full object-contain ${
+                      category.name === "Intermediário" || category.name === "Motos"
+                        ? "scale-90 sm:scale-100" 
+                        : "scale-[2.25] sm:scale-100"
+                    } group-hover:scale-110 sm:group-hover:scale-110 transition-transform duration-500`}
                     style={{ mixBlendMode: 'multiply' }}
                   />
                 </div>
@@ -94,8 +98,8 @@ const FleetSection = () => {
 
                 <div className="mt-2 sm:mt-4 flex items-center justify-center">
                   <Link to={`/orcamento?categoria=${encodeURIComponent(category.name)}`} className="w-full">
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="w-full bg-accent hover:bg-accent/90 text-white font-semibold text-xs sm:text-sm gap-1 shadow-md shadow-accent/20"
                     >
                       Solicitar Orçamento
@@ -118,12 +122,12 @@ const FleetSection = () => {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-secondary/5 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-secondary/10">
             <p className="text-secondary/70 text-sm sm:text-base">Precisa de outra categoria de veículo?</p>
-            <a href="https://wa.me/5531984503693?text=Ol%C3%A1%2C%20vim%20pelo%20site..." target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button className="gap-2 bg-accent hover:bg-accent/90 font-semibold shadow-lg shadow-accent/25 w-full sm:w-auto">
+            <Link to="/orcamento" className="w-full sm:w-auto">
+              <Button className="gap-2 bg-accent hover:bg-accent/90 text-white font-semibold shadow-lg shadow-accent/25 w-full sm:w-auto">
                 Fale Conosco
                 <ArrowRight className="w-4 h-4" />
               </Button>
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -41,7 +41,7 @@ const Footer = () => {
             <h4 className="font-bold text-sm sm:text-base text-foreground">Contato</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li>(31) 98450-3693</li>
-              <li className="break-all">contato@carflex.com.br</li>
+              <li className="break-all">administrativo@carflexlocadora.com.br</li>
               <li>Belo Horizonte - MG</li>
             </ul>
           </div>

@@ -4,6 +4,7 @@ import nexusLogo from "@/assets/clients/nexus-logo.png";
 import agileLogo from "@/assets/clients/agile-logo.png";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 const ClientsSection = () => {
   const clients = [{
     name: "VMC Tanatopraxia",
@@ -60,11 +61,11 @@ const ClientsSection = () => {
         }} whileTap={{
           scale: 0.98
         }}>
-            <a href="https://wa.me/5531984503693?text=Ol%C3%A1%2C%20vim%20pelo%20site..." target="_blank" rel="noopener noreferrer" className="w-full sm:w-fit block">
+            <Link to="/orcamento" className="w-full sm:w-fit block">
               <Button className="bg-accent hover:bg-accent/90 text-white px-6 sm:px-10 py-5 sm:py-7 text-sm font-semibold tracking-wide w-full sm:w-fit transition-all duration-300 hover:shadow-xl hover:shadow-accent/20">
                 CONHEÇA NOSSA FROTA
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
 

@@ -1,9 +1,22 @@
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import reviewsBackground from "@/assets/reviews-background.png";
 import clientPhoto from "@/assets/reviews/client-photo.png";
+import vmcLogo from "@/assets/clients/vmc-logo.png";
+import tutoriLogo from "@/assets/clients/tutori-logo.png";
+import nexusLogo from "@/assets/clients/nexus-logo.png";
+import agileLogo from "@/assets/clients/agile-logo.png";
 
 const ReviewsSection = () => {
+  const companyLogos: { [key: string]: string } = {
+    "VMC Tanatopraxia": vmcLogo,
+    "Tutori Segurança": tutoriLogo,
+    "Nexus Vigilância": nexusLogo,
+    "Agile Soluções": agileLogo,
+  };
+
   const reviews = [
     {
       name: "Carlos Eduardo",
@@ -101,23 +114,39 @@ const ReviewsSection = () => {
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent/30">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent/30 bg-white p-1 flex items-center justify-center">
                     <img 
-                      src={clientPhoto} 
-                      alt={review.name}
-                      className="w-full h-full object-cover"
+                      src={companyLogos[review.company] || clientPhoto} 
+                      alt={review.company}
+                      className="w-[800%] h-[800%] object-contain"
                     />
                   </div>
                   <div>
-                    <p className="font-semibold text-secondary">{review.name}</p>
-                    <p className="text-sm text-secondary/50">
-                      {review.role} • {review.company}
-                    </p>
+                    <p className="font-semibold text-secondary">{review.company}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* CTA Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-10 sm:mt-16 text-center"
+          >
+            <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-secondary/5 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-secondary/10">
+              <p className="text-secondary/70 text-sm sm:text-base">Precisa de uma categoria de veículo?</p>
+              <Link to="/orcamento" className="w-full sm:w-auto">
+                <Button className="gap-2 bg-accent hover:bg-accent/90 text-white font-semibold shadow-lg shadow-accent/25 w-full sm:w-auto">
+                  Fale Conosco
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

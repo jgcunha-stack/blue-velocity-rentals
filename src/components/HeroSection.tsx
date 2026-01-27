@@ -1,7 +1,8 @@
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroFleet from "@/assets/hero-fleet-branded.png";
+import { Link } from "react-router-dom";
+import heroFleet from "@/assets/polotrack.png";
 const HeroSection = () => {
   return <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-secondary pt-20 pb-8">
     {/* Subtle gradient overlay */}
@@ -63,17 +64,17 @@ const HeroSection = () => {
         duration: 0.6,
         delay: 0.3
       }} className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-10 px-2">
-        <a href="https://wa.me/5531984503693?text=Ol%C3%A1%2C%20vim%20pelo%20site..." target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-          <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-secondary font-semibold px-6 sm:px-8 rounded-full w-full sm:w-auto">
+        <Link to="/orcamento" className="w-full sm:w-auto">
+          <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-6 sm:px-8 rounded-full w-full sm:w-auto">
             Solicitar Orçamento
             <ArrowRight className="w-5 h-5" />
           </Button>
-        </a>
-        <a href="https://wa.me/5531984503693?text=Ol%C3%A1%2C%20vim%20pelo%20site..." target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+        </Link>
+        <Link to="/orcamento" className="w-full sm:w-auto">
           <Button size="lg" variant="outline" className="border-border hover:bg-secondary/80 rounded-full px-6 sm:px-8 w-full sm:w-auto">
             Ver Frota
           </Button>
-        </a>
+        </Link>
       </motion.div>
 
       {/* Social Proof */}
@@ -115,7 +116,7 @@ const HeroSection = () => {
       }} transition={{
         duration: 0.8,
         delay: 0.5
-      }} className="relative max-w-4xl mx-auto">
+      }} className="relative max-w-3xl mx-auto">
         <img src={heroFleet} alt="Frota diversificada Carflex - Polo, Strada e Moto" className="w-full h-auto drop-shadow-2xl" />
         {/* Subtle glow under car */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-accent/20 blur-3xl rounded-full" />

@@ -70,3 +70,14 @@ npm run build
 ```
 
 Os arquivos serão gerados na pasta `dist/`.
+
+## Configuração de Envio de Email
+
+O formulário de orçamento está configurado para enviar emails diretamente para `pedrodiasnovais1@gmail.com` usando **FormSubmit**, um serviço gratuito e simples que não requer configuração.
+
+### Como funciona:
+
+- **FormSubmit**: Envia o email automaticamente para `contato@carflex.com.br`
+- **Fallback**: Se houver erro, abre o cliente de email padrão com os dados preenchidos
+
+**Nota:** O FormSubmit é gratuito e funciona automaticamente, sem necessidade de criar conta ou configurar credenciais.
